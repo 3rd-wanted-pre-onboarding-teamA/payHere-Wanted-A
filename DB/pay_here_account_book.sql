@@ -9,7 +9,7 @@ create table member ( -- 회원
 );
 create table account_book ( -- 가계부
     account_book_id int not null auto_increment,
-    member_id varchar(20) not null,
+    member_id varchar(50) not null,
     type varchar(10) not null check (type in('수입', '지출')),
     amount int not null,
     balance int not null,
