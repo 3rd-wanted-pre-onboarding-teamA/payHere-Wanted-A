@@ -1,10 +1,14 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const auth = require("../../../models/auth");
 
+dotenv.config();
 const router = express.Router();
 
+// 회원가입
 router.post(
   "/newUserAction",
   body("member_id").isEmail().withMessage("이메일 형식에 맞게 작성해주세요!"), // member-id는 email 형식이어야 한다.
@@ -22,12 +26,29 @@ router.post(
         .status(400)
         .json({ errors: errors.errors.map((obj) => obj.msg) }); // 위 사항을 어겼을 시 400 반환
     }
+
     const { member_id, member_pw, member_name, phone_number } = req.body;
-    const hashedPassword = await bcrypt.hash(member_pw, 10);
+    const hashedPassword = await bcrypt.hash(member_pw, 10);  // 패스워드 암호화
+
+    // member 테이블에 유저 정보 저장
     auth.signUp(member_id, hashedPassword, member_name, phone_number);
 
-    return res.status(201).json({ message: "회원가입이 완료되었습니다." });
+    // 저장된 회원 정보를 통해 jwt 생성
+    const newUserToken = jwt.sign({ member_id, member_name }, process.env.JWT_SECRETKEY, {
+      expiresIn: 60 * 60  // 60포 * 60으로 1시간 유요한 토큰 발급
+    });
+
+    // json 응답 통해 메시지와 jwt 토큰 전달
+    return res.status(201).json({
+      message: "회원가입이 완료되었습니다.",
+      token: newUserToken
+    });
   }
 );
+
+// 아이디 중복 검사
+/**
+ * TODO: 아이디 중복 검사 메소드(or api) 구현
+ */
 
 module.exports = router;
