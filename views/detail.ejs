@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/detail.css" />
+    <title>가계부 상세보기</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="contents-main">
+        <div class="contents-container">
+          <div class="contents-header">
+            <div class="contents-detail">가계부 상세정보</div>
+          </div>
+          <div class="line"></div>
+          <div class="contents-item">
+            <div><span class="contents-type">날짜</span> <%= detail.reg_date %></div>
+            <div><span class="contents-type">결제</span> <%= detail.payment %></div>
+            <div><span class="contents-type">내역</span> <%= detail.purpose %></div>
+            <div><span class="contents-type">타입</span> <%= detail.type %></div>
+            <div><span class="contents-type">금액</span> <%= detail.amount %>원</div>
+            <div><span class="contents-type">메모</span> <%= detail.memo %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

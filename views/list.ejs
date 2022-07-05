@@ -2,6 +2,7 @@
 <html lang="ko">
   <head>
     <link type="text/css" rel="stylesheet" href="/css/list.css" />
+    <script src="/js/list.js"> </script>
     <title>가계부 목록</title>
   </head>
   <body>
@@ -20,7 +21,7 @@
             <div class="content-item-align">
               <div class="contents-item-date"><%= data.reg_date %></div>
               <div class="contents-item-group">
-                <img class="detail-button" src="/images/detail.png" alt="더보기">
+                <img class="detail-button" src="/images/detail.png" alt="더보기" onclick="detail('<%= data.account_book_id %>')">
                 <img class="update-button" src="/images/update.png" alt="수정">
                 <img class="delete-button" src="/images/delete.png" alt="삭제">
                 <div class="contents-item-purpose"><%= data.purpose %></div>
