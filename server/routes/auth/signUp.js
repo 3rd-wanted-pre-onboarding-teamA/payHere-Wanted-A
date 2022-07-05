@@ -33,15 +33,9 @@ router.post(
     // member 테이블에 유저 정보 저장
     auth.signUp(member_id, hashedPassword, member_name, phone_number);
 
-    // 저장된 회원 정보를 통해 jwt 생성
-    const newUserToken = jwt.sign({ member_id, member_name }, process.env.JWT_SECRETKEY, {
-      expiresIn: 60 * 60  // 60포 * 60으로 1시간 유요한 토큰 발급
-    });
-
     // json 응답 통해 메시지와 jwt 토큰 전달
     return res.status(201).json({
-      message: "회원가입이 완료되었습니다.",
-      token: newUserToken
+      message: "회원가입이 완료되었습니다."
     });
   }
 );
@@ -50,5 +44,9 @@ router.post(
 /**
  * TODO: 아이디 중복 검사 메소드(or api) 구현
  */
+const idCheck = (email) => {
+  if (!auth.idCheck) return false;
+  
+};
 
 module.exports = router;
