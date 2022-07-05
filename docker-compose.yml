@@ -2,7 +2,7 @@ version: "3"
 services:
   database:
     # Dockerfile이 있는 위치
-    build: ./database
+    build: ./DB
     # 내부에서 개방할 포트 : 외부에서 접근할 포트
     ports:
       - "3306:3306"
