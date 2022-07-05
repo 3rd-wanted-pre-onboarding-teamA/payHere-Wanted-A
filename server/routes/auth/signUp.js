@@ -7,7 +7,14 @@ const auth = require("../../../models/auth");
 dotenv.config();
 const router = express.Router();
 
-// 회원가입
+/**
+ * @code writer 장덕수
+ * @description 사용자 회원가입 api 작성
+ *
+ * @POST ("/auth/newUserAction")
+ *
+ * @returns json
+ */
 router.post(
   "/newUserAction",
   body("member_id").isEmail().withMessage("이메일 형식에 맞게 작성해주세요!"), // member-id는 email 형식이어야 한다.
@@ -39,9 +46,13 @@ router.post(
   }
 );
 
-// 아이디 중복 검사
 /**
- * TODO: 아이디 중복 검사 메소드(or api) 구현
+ * @code writer 장덕수
+ * @description 회원가입 시 아이디 중복 검사 api 작성
+ *
+ * @POST ("/auth/checkIdAction")
+ *
+ * @returns json
  */
 router.post("/checkIdAction", async (req, res) => {
   const { member_id } = req.body;
