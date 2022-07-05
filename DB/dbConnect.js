@@ -1,8 +1,8 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const pool = mysql.createPool({
+const db = mysql.createConnection({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
@@ -10,19 +10,4 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DATABASE
 });
 
-module.exports = function () {
-  return {
-    init: function () {
-      return pool;
-    },
-    open: function (conn) {
-      conn.connect(function (err) {
-        if (err) {
-          console.log("연결 중 에러 발생: " + err);
-        } else {
-          console.log("mysql 연결 성공");
-        }
-      });
-    },
-  };
-};
+module.exports = db;
