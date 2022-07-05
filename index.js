@@ -15,10 +15,6 @@ app.use(express.json());
 app.use(cors());
 app.use("/", index);
 
-db.connect(function(err) {
-  if (err) throw err;
-  console.log("DB Connected");
-  app.listen(port, () => {
-    console.log(`express is running on ${port}`);
-  });
+app.listen(port, () => {
+  console.log(`express is running on ${port}`);
 });
