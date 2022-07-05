@@ -18,6 +18,7 @@ router.get("/", async (req, res) => {
   try {
     const connection = await pool.getConnection(async (conn) => conn);
     try {
+      // 삭제한 가계부의 state를 수정하여 삭제하지 않은 상태로 변환
       const sql = `update account_book set state = 0 where account_book_id = ${id};`;
       const [rows] = await connection.query(sql);
       sendData.message = "삭제한 가계부가 다시 복원되었습니다.";
