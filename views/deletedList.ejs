@@ -2,6 +2,7 @@
 <html lang="ko">
   <head>
     <link type="text/css" rel="stylesheet" href="/css/deletedlist.css" />
+    <script src="/js/deletedList.js"> </script>
     <title>삭제한 가계부 목록</title>
   </head>
   <body>
@@ -20,7 +21,7 @@
             <div class="content-item-align">
               <div class="contents-item-date"><%= data.reg_date %></div>
               <div class="contents-item-group">
-                <img class="restore-button" src="/images/restore.png" alt="복원">
+                <img class="restore-button" src="/images/restore.png" alt="복원" onclick="restore('<%= data.account_book_id %>')">
                 <div class="contents-item-purpose"><%= data.purpose %></div>
                 <% if (data.type == "수입") { %>
                   <div class="contents-item-money"><span class="income"><%= data.type %> <%= data.amount %></span> 원</div>
