@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const index = require("./server/routes/index");
-const db = require("./DB/dbConnect");
 
 const port = process.env.PORT || 3000;
 const app = express();

@@ -2,7 +2,6 @@ const dotenv = require("dotenv");
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const auth = require("../../../models/auth");
 
 dotenv.config();
@@ -44,9 +43,18 @@ router.post(
 /**
  * TODO: 아이디 중복 검사 메소드(or api) 구현
  */
-const idCheck = (email) => {
-  if (!auth.idCheck) return false;
-  
-};
+router.post("/checkIdAction", async (req, res) => {
+  const { member_id } = req.body;
+  const user = await auth.checkId(member_id);
+  console.log(user);
+  if (user[0]) return res.json({
+    message: "사용 중인 아이디입니다.",
+    success: false
+  });
+  else return res.json({
+    message: "사용 가능한 아이디입니다.",
+    success: true
+  })
+});
 
 module.exports = router;
