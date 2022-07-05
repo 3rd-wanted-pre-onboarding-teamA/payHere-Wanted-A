@@ -14,16 +14,35 @@ const getById = async id => {
         .then(result => result[0][0]);
 }
 
-const create = async (type, amount, state, memo) => {
-    return pool 
-        .execute(`INSERT INTO account_book (type, amount, date, state, memo) VALUES(?,?,?,?,?)`, [type, amount, new Date(), state, memo])
-        .then(result => getById(result[0].insertId));
-}
+router.post("/", async (req, res) => {
+    let sendData = {};
+    let member_id = 'tester2@test.com';
+    const { type, amount, purpose, payment, memo, state} = req.body;
 
-router.post("/createAction", async (req, res) => {
-    const { type, amount, date, state, memo } = req.body;
+    try {
+        const connection = await pool.getConnection(async conn => conn);
 
-    
+        try {
+            const sql = `INSERT INTO account_book (member_id, type, amount, purpose, payment, memo, state) VALUES ?`;
+            const contents = req.body;
+            console.log(contents);
+            const values = [
+                [member_id, type, amount, purpose, payment, memo,
+                state]
+            ];
+            const [row] = await connection.query(sql, [values]);
+            sendData.create = row;
+            console.log(sendData);
+        } catch (err) {
+            console.log(err);
+        } finally {
+            connection.release();
+            res.status(201).json({ message: "가계부 작성 완료!" })
+            res.render("create.ejs", sendData);
+        }
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 module.exports = router;
