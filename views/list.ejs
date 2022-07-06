@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/list.css" />
+    <script src="/js/list.js"> </script>
+    <title>가계부 목록</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="contents-main">
+        <div class="contents-container">
+          <div class="contents-header">
+            <div class="contents-balence">잔액: <%= balance %>원</div>
+          </div>
+          <div class="line"></div>
+          <% if (list.length == 0) { %>
+            <div class="no-data-text">등록된 가계부가 없습니다.</div>
+          <% } %>
+          <% if (list.length != 0) { %> <% for(const data of list) { %>
+          <div class="contents-item">
+            <div class="content-item-align">
+              <div class="contents-item-date"><%= data.reg_date %></div>
+              <div class="contents-item-group">
+                <img class="detail-button" src="/images/detail.png" alt="더보기" onclick="detail('<%= data.account_book_id %>')">
+                <img class="update-button" src="/images/update.png" alt="수정">
+                <img class="delete-button" src="/images/delete.png" alt="삭제">
+                <div class="contents-item-purpose"><%= data.purpose %></div>
+                <% if (data.type == "수입") { %>
+                  <div class="contents-item-money"><span class="income"><%= data.type %> <%= data.amount %></span> 원</div>
+                <% } %>
+                <% if (data.type == "지출") { %>
+                  <div class="contents-item-money"><span class="expenditure"><%= data.type %> <%= data.amount %></span> 원</div>
+                <% } %>
+              </div>
+            </div>
+            <div class="line2"></div>
+          </div>
+          <% } %> <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

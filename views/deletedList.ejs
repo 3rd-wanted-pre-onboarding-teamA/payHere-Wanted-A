@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/deletedlist.css" />
+    <script src="/js/deletedList.js"> </script>
+    <title>삭제한 가계부 목록</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="contents-main">
+        <div class="contents-container">
+          <div class="contents-header">
+            <div class="contents-trash">휴지통</div>
+          </div>
+          <div class="line"></div>
+          <% if (deletedList.length == 0) { %>
+            <div class="no-data-text">삭제된 가계부가 없습니다.</div>
+          <% } %>
+          <% if (deletedList.length != 0) { %> <% for (const data of deletedList) { %>
+          <div class="contents-item">
+            <div class="content-item-align">
+              <div class="contents-item-date"><%= data.reg_date %></div>
+              <div class="contents-item-group">
+                <img class="restore-button" src="/images/restore.png" alt="복원" onclick="restore('<%= data.account_book_id %>')">
+                <div class="contents-item-purpose"><%= data.purpose %></div>
+                <% if (data.type == "수입") { %>
+                  <div class="contents-item-money"><span class="income"><%= data.type %> <%= data.amount %></span> 원</div>
+                <% } %>
+                <% if (data.type == "지출") { %>
+                  <div class="contents-item-money"><span class="expenditure"><%= data.type %> <%= data.amount %></span> 원</div>
+                <% } %>
+              </div>
+            </div>
+            <div class="line2"></div>
+          </div>
+          <% } %> <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
