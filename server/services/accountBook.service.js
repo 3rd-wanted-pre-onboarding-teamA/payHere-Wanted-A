@@ -1,3 +1,4 @@
+const { verify } = require('jsonwebtoken');
 const pool = require("../db/config");
 
 class AccountBookService {
@@ -9,6 +10,41 @@ class AccountBookService {
     return pool
         .execute(`${SELECT_JOIN} WHERE ac.account_book_id=?`, [id])
         .then(result => result[0][0]);
+  }
+
+  static async getUserWithToken(req, res) {
+    let authHeader = req.headers['authorization'];
+    if (!authHeader) {
+      return res.status(401).send({
+        message: 'invalid access token',
+      });
+    }
+
+    let token = authHeader && authHeader.split(" ")[1];
+
+    const user = verify(token, process.env.JWT_ACCESS_TOKEN);
+    req.member_id = user.id;
+
+    const userInfo = await AccountBookService.getByMemberId(req.member_id);
+
+    if (!userInfo) {
+      return res.status(403).send({
+        message: 'Forbidden',
+      });
+    }
+  }
+
+  static async getByMemberId(member_id) {
+    const sql = `SELECT * FROM member WHERE member_id="${member_id}"`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      return await connection.query(sql);
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
   }
 
   static async create(member_id, type, amount, purpose, payment, memo) {

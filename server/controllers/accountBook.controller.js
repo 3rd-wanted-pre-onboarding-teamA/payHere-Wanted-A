@@ -1,14 +1,21 @@
+const { verify } = require('jsonwebtoken');
 const { getById } = require('../services/accountBook.service');
 const AccountBookService = require("../services/accountBook.service");
 
 class AccountBookController {
+
   // 가계부 생성
+  static createForm = async function (req, res) {
+    res.render("create.ejs");
+  }
+
   static createAccoutBook = async function (req, res) {
-    const member_id = "tester2@test.com";
-    const { type, amount, purpose, payment, memo} = req.body;
+    await AccountBookService.getUserWithToken(req, res);
+
+    const { type, amount, purpose, payment, memo } = req.body;
     try {
       // const [result] = await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
-      await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
+      await AccountBookService.create(req.member_id, type, amount, purpose, payment, memo);
 
       res.status(201).json({ message: "가계부 작성 완료!" });
       // res.status(201).render("create.ejs", {
@@ -22,10 +29,11 @@ class AccountBookController {
 
   // 가계부 수정
   static updateAccoutBook = async function (req, res) {
-    const member_id = "tester2@test.com";
     const id = req.query.id;
     const { type, amount, purpose, payment, memo} = req.body;
     const accountBook = await getById(id);
+
+    await AccountBookService.getUserWithToken(req, res);
 
     // if (accountBook.member_id !== req.member_id) {
     //     return res.sendStatus(403);
@@ -53,9 +61,10 @@ class AccountBookController {
 
   // 가계부 삭제
   static deleteAccoutBook = async function (req, res) {
-    const member_id = "tester2@test.com";
     const id = req.query.id;
     const accountBook = await getById(id);
+
+    await AccountBookService.getUserWithToken(req, res);
 
     // if (accountBook.member_id !== req.member_id) {
     //     return res.sendStatus(403);
@@ -68,7 +77,6 @@ class AccountBookController {
     }
 
     try {
-      // const [result] = await AccountBookService.remove(id);
       await AccountBookService.remove(id);
       
       res.status(200).json({ message: "가계부 삭제 성공!" });
