@@ -45,6 +45,23 @@ const pool = require("../db/config");
     }
   }
 
+  // 회원가입 시 잔액 입력
+  static async insertBalance(member_id, balance) {
+    const sql = `INSERT INTO have_money (member_id, balance) VALUES ('${member_id}', '${balance}');`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      const [result] = await connection.query(sql);
+      return result;
+    }
+    catch (err) {
+      throw err;
+    }
+    finally {
+      connection.release();
+    }
+  }
+
   // 로그인 시 유저 정보 조회 메소드
   static async checkUser(member_id) {
     const sql = `SELECT member_id, member_pw FROM member WHERE member_id = '${member_id}'`;

@@ -28,22 +28,31 @@ class AuthController {
           .json({ errors: errors.errors.map((obj) => obj.msg) }); // 위 사항을 어겼을 시 400 반환
       }
 
-      const { member_id, member_pw, member_name, phone_number } = req.body;
+      const { member_id, member_pw, member_name, phone_number, balance } = req.body;
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(member_pw, salt);  // 패스워드 암호화
 
-      // member 테이블에 유저 정보 저장
-      AuthService.signUp(member_id, hashedPassword, member_name, phone_number);
+      const exUser = await AuthService.checkId(member_id);
+      if (exUser[0]) {
+        return res.status(500).send("Server Error");
+      }
+      else {
+        // member 테이블에 유저 정보 저장
+        AuthService.signUp(member_id, hashedPassword, member_name, phone_number);
 
-      // json 응답 통해 메시지와 jwt 토큰 전달
-      return res.status(201).json({
-        message: "회원가입이 완료되었습니다."
-      });
+        // have_money 테이블에 잔액 정보 저장
+        AuthService.insertBalance(member_id, balance);
+
+        // json 응답 통해 메시지와 jwt 토큰 전달
+        return res.status(201).json({
+          message: "회원가입이 완료되었습니다."
+        });
+      }
     }
     catch (err) {
-      throw err;
+        throw err;
+      }
     }
-  }
 
   // 회원가입 시 아이디 중복검사
   static checkId = async function (req, res) {
@@ -79,23 +88,23 @@ class AuthController {
   static loginAction = async function (req, res) {
     try {
       const { member_id, member_pw } = req.body;
-  
+
       const user = await AuthService.checkUser(member_id);
-  
+
       if (!user[0]) return res.json({
         message: "유효하지 않은 아이디입니다.",
         success: false
       });
-  
+
       const isMatch = await bcrypt.compare(member_pw, user[0].member_pw);
       if (!isMatch) return res.json({
         message: "유효하지 않은 비민번호입니다.",
         success: false
       });
-  
+
       const accessToken = generateAccessToken(user[0].member_id);
       const refreshToken = generateRefreshToken(user[0].member_id);
-  
+
       res.json({ accessToken, refreshToken });
     }
     catch (err) {
