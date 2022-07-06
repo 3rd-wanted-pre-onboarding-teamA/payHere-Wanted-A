@@ -17,17 +17,26 @@ class AuthController {
         .json({ errors: errors.errors.map((obj) => obj.msg) }); // 위 사항을 어겼을 시 400 반환
     }
 
-    const { member_id, member_pw, member_name, phone_number } = req.body;
+    const { member_id, member_pw, member_name, phone_number, balance } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(member_pw, salt);  // 패스워드 암호화
 
-    // member 테이블에 유저 정보 저장
-    AuthService.signUp(member_id, hashedPassword, member_name, phone_number);
-
-    // json 응답 통해 메시지와 jwt 토큰 전달
-    return res.status(201).json({
-      message: "회원가입이 완료되었습니다."
-    });
+    const exUser = await AuthService.checkId(member_id);
+    if (exUser[0]) {
+      return res.status(500).send("Server Error");
+    }
+    else {
+      // member 테이블에 유저 정보 저장
+      AuthService.signUp(member_id, hashedPassword, member_name, phone_number);
+      
+      // have_money 테이블에 잔액 정보 저장
+      AuthService.insertBalance(member_id, balance);
+  
+      // json 응답 통해 메시지와 jwt 토큰 전달
+      return res.status(201).json({
+        message: "회원가입이 완료되었습니다."
+      });
+    }
   }
 
   // 회원가입 시 아이디 중복검사
