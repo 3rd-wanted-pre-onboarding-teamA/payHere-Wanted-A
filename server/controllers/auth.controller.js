@@ -1,6 +1,11 @@
-const { validationResult } = require("express-validator");
+const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
 const authService = require("../services/auth.service");
+const { generateAccessToken, generateRefreshToken } = require("../util/generateToken");
+
+dotenv.config();
 
 class authController {
   // 회원가입
@@ -37,6 +42,47 @@ class authController {
       message: "사용 가능한 아이디입니다.",
       success: true
     });
+  }
+
+  // 로그인
+  static login = async function (req, res) {
+    const { member_id, member_pw } = req.body;
+
+    const user = await authService.checkUser(member_id);
+
+    if (!user[0]) return res.json({
+      message: "유효하지 않은 아이디입니다.",
+      success: false
+    });
+
+    const isMatch = await bcrypt.compare(member_pw, user[0].member_pw);
+    if (!isMatch) return res.json({
+      message: "유효하지 않은 비민번호입니다.",
+      success: false
+    });
+
+    const accessToken = generateAccessToken(user[0].member_id);
+    const refreshToken = generateRefreshToken(user[0].member_id);
+
+    res.json({ accessToken, refreshToken });
+  }
+
+  // access토큰 만료 시 재발급
+  static refresh = function (req, res) {
+    const refreshToken = req.body.refreshToken;
+    if (!refreshToken) return res.sendStatus(401);
+
+    jwt.verify(
+      refreshToken,
+      process.env.JWT_REFRESH_TOKEN,
+      (error, user) => {
+        if (error) return res.sendStatus(403);
+
+        const accessToken = generateAccessToken(user.id);
+
+        res.json({ accessToken });
+      }
+    );
   }
 }
 

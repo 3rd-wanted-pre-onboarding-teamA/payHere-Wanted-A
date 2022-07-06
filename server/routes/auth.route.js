@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/newUserAction", authValidator, authController.signUp);
 router.post("/checkIdAction", authController.checkId);
-// router.post("/loginAction", );
+router.post("/loginAction", authController.login);
 // router.post("/refresh", );
 
 module.exports = router;
