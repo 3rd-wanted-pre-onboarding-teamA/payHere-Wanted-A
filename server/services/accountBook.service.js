@@ -1,4 +1,4 @@
-const pool = require("../../DB/config");
+const pool = require("../../db/config");
 
 class AccountBookService {
 
