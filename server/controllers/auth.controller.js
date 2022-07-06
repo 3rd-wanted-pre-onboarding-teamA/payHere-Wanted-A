@@ -22,7 +22,22 @@ class authController {
     return res.status(201).json({
       message: "회원가입이 완료되었습니다."
     });
-  } 
+  }
+
+  // 회원가입 시 아이디 중복검사
+  static checkId = async function (req, res) {
+    const { member_id } = req.body;
+    const user = await authService.checkId(member_id);
+    console.log(user);
+    if (user[0]) return res.json({
+      message: "사용 중인 아이디입니다.",
+      success: false
+    });
+    else return res.json({
+      message: "사용 가능한 아이디입니다.",
+      success: true
+    });
+  }
 }
 
 module.exports = authController;
