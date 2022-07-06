@@ -18,7 +18,8 @@ class authController {
     }
 
     const { member_id, member_pw, member_name, phone_number } = req.body;
-    const hashedPassword = await bcrypt.hash(member_pw, 10);  // 패스워드 암호화
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(member_pw, salt);  // 패스워드 암호화
 
     // member 테이블에 유저 정보 저장
     authService.signUp(member_id, hashedPassword, member_name, phone_number);
