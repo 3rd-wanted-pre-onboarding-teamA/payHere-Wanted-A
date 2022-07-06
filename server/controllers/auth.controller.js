@@ -2,12 +2,12 @@ const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
-const authService = require("../services/auth.service");
+const AuthService = require("../services/auth.service");
 const { generateAccessToken, generateRefreshToken } = require("../util/generateToken");
 
 dotenv.config();
 
-class authController {
+class AuthController {
   // 회원가입
   static signUp = async function (req, res) {
     const errors = validationResult(req);
@@ -22,7 +22,7 @@ class authController {
     const hashedPassword = await bcrypt.hash(member_pw, salt);  // 패스워드 암호화
 
     // member 테이블에 유저 정보 저장
-    authService.signUp(member_id, hashedPassword, member_name, phone_number);
+    AuthService.signUp(member_id, hashedPassword, member_name, phone_number);
 
     // json 응답 통해 메시지와 jwt 토큰 전달
     return res.status(201).json({
@@ -33,7 +33,7 @@ class authController {
   // 회원가입 시 아이디 중복검사
   static checkId = async function (req, res) {
     const { member_id } = req.body;
-    const user = await authService.checkId(member_id);
+    const user = await AuthService.checkId(member_id);
     console.log(user);
     if (user[0]) return res.json({
       message: "사용 중인 아이디입니다.",
@@ -49,7 +49,7 @@ class authController {
   static login = async function (req, res) {
     const { member_id, member_pw } = req.body;
 
-    const user = await authService.checkUser(member_id);
+    const user = await AuthService.checkUser(member_id);
 
     if (!user[0]) return res.json({
       message: "유효하지 않은 아이디입니다.",
@@ -87,4 +87,4 @@ class authController {
   }
 }
 
-module.exports = authController;
+module.exports = AuthController;

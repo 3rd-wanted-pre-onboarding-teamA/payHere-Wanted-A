@@ -10,12 +10,13 @@ const pool = require("../db/config");
  * 
  * @returns sql구문으로 인한 DB 생성 및 조회
  */
- class authService {
+ class AuthService {
   // 회원가입 메소드
   static async signUp(member_id, member_pw, member_name, phone_number) {
     const sql = `INSERT INTO member (member_id, member_pw, member_name, phone_number) VALUES ('${member_id}', '${member_pw}', '${member_name}', '${phone_number}');`;
+    let connection = null;
     try {
-      const connection = await pool.getConnection(async (conn) => conn);
+      connection = await pool.getConnection(async (conn) => conn);
       const [result] = await connection.query(sql);
       return result;
     }
@@ -30,8 +31,9 @@ const pool = require("../db/config");
   // 아이디 중복 확인 메소드
   static async checkId(member_id) {
     const sql = `SELECT member_id FROM member WHERE member_id = '${member_id}'`;
+    let connection = null;
     try {
-      const connection = await pool.getConnection(async (conn) => conn);
+      connection = await pool.getConnection(async (conn) => conn);
       const [result] = await connection.query(sql);
       return result;
     }
@@ -46,8 +48,9 @@ const pool = require("../db/config");
   // 로그인 시 유저 정보 조회 메소드
   static async checkUser(member_id) {
     const sql = `SELECT member_id, member_pw FROM member WHERE member_id = '${member_id}'`;
+    let connection = null;
     try {
-      const connection = await pool.getConnection(async (conn) => conn);
+      connection = await pool.getConnection(async (conn) => conn);
       const [result] = await connection.query(sql);
       return result;
     }
@@ -60,4 +63,4 @@ const pool = require("../db/config");
   }
 }
 
-module.exports = authService;
+module.exports = AuthService;
