@@ -6,7 +6,7 @@ const { getById } = require('../../../data/accountBook.js');
 
 /**
  * @code writer 이승연
- * @description 가계부 등록 구현
+ * @description 가계부 수정 구현
  *
  * @POST ("/accountBook/updateAction?id=1")
  *
