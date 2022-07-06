@@ -2,3 +2,7 @@
 function detail(id) {
   location.href = "/accountBook/detail?id=" + id;
 }
+
+function trash() {
+  location.href = "/accountBook/deletedList";
+}
