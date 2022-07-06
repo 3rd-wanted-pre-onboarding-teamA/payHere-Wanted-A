@@ -17,11 +17,13 @@ const pool = require("../db/config");
     try {
       const connection = await pool.getConnection(async (conn) => conn);
       const [result] = await connection.query(sql);
-      connection.release();
       return result;
     }
     catch (err) {
       throw err;
+    }
+    finally {
+      connection.release();
     }
   }
   
@@ -31,11 +33,13 @@ const pool = require("../db/config");
     try {
       const connection = await pool.getConnection(async (conn) => conn);
       const [result] = await connection.query(sql);
-      connection.release();
       return result;
     }
     catch (err) {
       throw err;
+    }
+    finally {
+      connection.release();
     }
   }
 
@@ -45,11 +49,13 @@ const pool = require("../db/config");
     try {
       const connection = await pool.getConnection(async (conn) => conn);
       const [result] = await connection.query(sql);
-      connection.release();
       return result;
     }
     catch (err) {
       throw err;
+    }
+    finally {
+      connection.release();
     }
   }
 }
