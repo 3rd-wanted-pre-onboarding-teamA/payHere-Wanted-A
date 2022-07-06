@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script src="/js/signup.js"> </script>
+  <title>회원가입</title>
+</head>
+<body>
+  <form id="signup">
+    <div class="input-email">
+      <label for="e-mail">이메일 : </label>
+      <input type="email" id="email" placeholder="이메일을 적어주세요 (예시: goodnight@gmail.com)">
+      <button type="button" onclick="checkId()">아이디 중복 체크</button><br><br>
+    </div>
+    <div class="input-pw">
+      <label for="password">비밀번호 : </label>
+      <input type="text" id="password" placeholder="비밀번호를 적어주세요 (6글자 이상)"><br><br>
+    </div>
+    <div class="input-name">
+      <label for="name">이름 : </label>
+      <input type="text" id="name" placeholder="이름을 적어주세요 (10글자 미만)"><br><br>
+    </div>
+    <div class="input-balance">
+      <label for="balance">잔액 : </label>
+      <input type="number" id="balance" placeholder="잔액을 적어주세요 (예시: 50000)"><br><br>
+    </div>
+    <button type="button" onclick="submitSignUp()">회원가입하기</button>
+  </form>
+</body>
+</html>
