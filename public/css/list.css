@@ -23,13 +23,24 @@
 }
 
 .contents-main .contents-container .contents-header .contents-balence {
-  width: 100%;
   font-size: 35pt;
   font-weight: bold;
   line-height: 45px;
   text-align: left;
   color: #e27160;
   letter-spacing: 2px;
+}
+
+.contents-main .contents-container .contents-header .contents-memu-group {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+.contents-main .contents-container .contents-header img {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
 }
 
 .contents-main .contents-container .line {
