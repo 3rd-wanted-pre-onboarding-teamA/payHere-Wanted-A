@@ -11,7 +11,7 @@ class App {
     this.setMiddleWare();
     this.setStatic();
     this.getRouting();
-    this.errorHandler();
+    // this.errorHandler();
   }
 
   setMiddleWare() {
