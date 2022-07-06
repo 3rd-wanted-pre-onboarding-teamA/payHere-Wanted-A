@@ -1,4 +1,4 @@
-const pool = require("../DB/config");
+const pool = require("../db/config");
 
 /**
  * @code writer 장덕수
@@ -10,7 +10,7 @@ const pool = require("../DB/config");
  * 
  * @returns sql구문으로 인한 DB 생성 및 조회
  */
-class auth {
+ class authService {
   // 회원가입 메소드
   static async signUp(member_id, member_pw, member_name, phone_number) {
     const sql = `INSERT INTO member (member_id, member_pw, member_name, phone_number) VALUES ('${member_id}', '${member_pw}', '${member_name}', '${phone_number}');`;
@@ -54,4 +54,4 @@ class auth {
   }
 }
 
-module.exports = auth;
+module.exports = authService;
