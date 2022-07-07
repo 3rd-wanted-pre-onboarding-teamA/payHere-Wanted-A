@@ -78,11 +78,32 @@ TODO
 ~~swagger를 통해 정리 예정~~
 
 
-
 ## TDD
 
 Jest로 테스트 코드 구현
 ~~예시 넣기~~
 
+
+## RestAPI
+~~이후 swagger로 보여줄 예정~~
+  |  | METHOD | URL | Response |
+| --- | --- | --- | --- |
+| 회원가입 | GET | /auth/newUser | 덕수 |
+| 회원가입 동작 | POST | /auth/newUserAction | 덕수 |
+| id 중복 검사 동작 | POST | /auth/checkIdAction | 덕수 |
+| 토큰 중복검사 동작 | POST | /auth/validateAction | 덕수 |
+| 로그인 | GET | /auth/login | 덕수 |
+| 로그인 동작  | POST | /auth/loginAction | 덕수 |
+| 로그아웃 | POST | /auth/logout | 덕수 |
+| 회원정보 | GET | /mypage | 덕수 |
+| 가계부 등록 | GET | /accountBook/create | 승연 |
+| 가계부 등록 동작  | POST | /accountBook/createAction | 승연 |
+| 가계부 수정 | GET | /accountBook/update | 승연 |
+| 가계부 수정 동작 | PUT | /accountBook/updateAction?id=1 | 승연 |
+| 가계부 삭제 | PUT | /accountBook/delete?id=1 | 승연 |
+| 삭제 가계부 리스트 | GET | /accountBook/deletedList | 정연 |
+| 삭제 가계부 복원 | PUT | /accountBook/restore?id=1 | 정연 |
+| 가계부 리스트 | GET | /accountBook/list | 정연 |
+| 가계부 상세 내역 | GET | /accountBook/detail?id=1 | 정연 |
 
 
