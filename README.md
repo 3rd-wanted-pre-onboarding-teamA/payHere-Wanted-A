@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat&logo=Amazon RDS&logoColor=white"/>
   <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat&logo=Amazon EC2S&logoColor=white"/>
 </p>
-
+ README TODO: version 정보 업데이트
 
   ## 🌈 Team A members  
 
@@ -50,6 +50,8 @@
 
 
 ## ✔️ 구현 기능
+
+<img src="https://user-images.githubusercontent.com/22606199/177725389-38d3a111-291d-4abb-bc11-80a28abf1942.png" width="500"/>
 ```
 1. 회원 가입 및 로그인 -> 예외 처리 필요
 2. 가계부에 오늘 사용한 돈, 메모 기록 -> 구현 완료
