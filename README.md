@@ -1,5 +1,3 @@
-# payHere-Wanted-A
-payHere 기업 과제
 <div align="center">
 
   # PayHere 가계부 만들기
