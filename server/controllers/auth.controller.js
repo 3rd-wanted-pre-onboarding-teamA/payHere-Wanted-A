@@ -7,6 +7,7 @@ const {
   generateAccessToken,
   generateRefreshToken,
 } = require("../util/generateToken");
+const authenticateAccessToken = require("../util/validateJwt");
 
 dotenv.config();
 
@@ -156,15 +157,27 @@ class AuthController {
   };
 
   // access토큰 만료 시 재발급
-  static refresh = function (req, res) {
-    const refreshToken = req.body.refreshToken;
+  static refresh = async function (req, res) {
+    const authHeader = req.headers["authorization"];
+    const authToken = authHeader && authHeader.split(" ")[1];
+
+    // access 토큰 디코딩하여 user 정보 조회
+    const decoded = jwt.decode(authToken);
+    
+    // 디코딩 결과가 없으면 권한 없음 응답
+    if (decoded === null) {
+      return res.status(401).send({
+        message: "No authorized!"
+      });
+    }
+    
+    // 디코딩된 값에서 유저 id 가져와 리프레시 토큰 검증
+    const refreshToken = await AuthService.searchRefreshToken(decoded.id);
     if (!refreshToken) return res.sendStatus(401);
-
-    jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN, (error, user) => {
+    
+    jwt.verify(refreshToken[0].refresh_token, process.env.JWT_REFRESH_TOKEN, (error, user) => {
       if (error) return res.sendStatus(403);
-
       const accessToken = generateAccessToken(user.id);
-
       res.json({ accessToken });
     });
   };
