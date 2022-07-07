@@ -28,6 +28,12 @@ create table have_money ( -- 잔액
 	constraint have_money_member_fk FOREIGN KEY (member_id)
     REFERENCES member(member_id) ON UPDATE CASCADE
 );
+CREATE TABLE refresh_token ( -- 리프레시 토큰
+    member_id VARCHAR(50) NOT NULL,
+    refresh_token VARCHAR(250) NOT NULL,
+    CONSTRAINT refresh_token_member_fk FOREIGN KEY (member_id)
+    REFERENCES member(member_id) ON UPDATE CASCADE
+);
 -- 가계부 작성에 따른 잔액 변경 트리거
 DELIMITER $$
 create trigger account_book_balance_trg after insert on account_book
