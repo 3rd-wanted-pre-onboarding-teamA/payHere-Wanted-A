@@ -11,9 +11,6 @@ dotenv.config();
  */
 const authenticateAccessToken = (req, res, next) => {
   let authHeader = req.headers["authorization"];
-  console.log("@@@@@@@@@@@@@@@@@@@@@@");
-  console.log(req.headers);
-  console.log("@@@@@@@@@@@@@@@@@@@@@@");
   let token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
