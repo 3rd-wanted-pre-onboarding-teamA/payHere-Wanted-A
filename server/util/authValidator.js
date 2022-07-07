@@ -16,4 +16,10 @@ const authValidator = [
     .withMessage("숫자만 입력해주세요!")  // 잔액은 숫자로만 받는다.
 ];
 
-module.exports = authValidator;
+const checkEmail = [
+  body("member_id")
+    .isEmail()
+    .withMessage("이메일 형식에 맞게 작성해주세요!")
+];
+
+module.exports = { authValidator, checkEmail };
