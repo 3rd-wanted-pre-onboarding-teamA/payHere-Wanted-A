@@ -4,6 +4,7 @@ function clickLogin() {
     alert(result.message);
     localStorage.setItem("access-token", result.accessToken);
     localStorage.setItem("refresh-token", result.refreshToken);
+    location.href = "/accountBook/list"
   });
 }
 
