@@ -13,16 +13,16 @@ dotenv.config();
 
 class AuthController {
   // 회원가입 브라우저 화면
-  static signUp = async function (req, res) {
+  static join = async function (req, res) {
     try {
-      res.render("signup.ejs");
+      res.render("join.ejs");
     } catch (err) {
       throw err;
     }
   };
 
   // 회원가입
-  static signUpAction = async function (req, res) {
+  static joinAction = async function (req, res) {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -41,7 +41,7 @@ class AuthController {
         return res.status(500).send("Server Error");
       } else {
         // member 테이블에 유저 정보 저장
-        AuthService.signUp(
+        AuthService.join(
           member_id,
           hashedPassword,
           member_name,

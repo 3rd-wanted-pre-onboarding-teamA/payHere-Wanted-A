@@ -8,7 +8,7 @@ const authValidator = [
     .isLength({ min: 6 })
     .withMessage("6글자 이상 작성해주세요!"), // 비밀번호는 최소 6글자 이상이어야 한다.
   body("member_name")
-    .isLength({ max: 10 })
+    .isLength({ min: 2, max: 10 })
     .withMessage("10글자 미만으로 작성해주세요!"), // 유저 이름은 10글자 이하여야 한다.
   body("phone_number")
     .isMobilePhone()

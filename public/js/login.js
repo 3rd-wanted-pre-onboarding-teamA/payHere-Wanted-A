@@ -2,9 +2,10 @@
 function clickLogin() {
   submitLogin().then(result => {
     alert(result.message);
-    localStorage.setItem("access-token", result.accessToken);
-    localStorage.setItem("refresh-token", result.refreshToken);
-    location.href = "/accountBook/list"
+    if (result.message === "로그인이 되었습니다.") {
+      localStorage.setItem("access-token", result.accessToken);
+      location.href = "/accountBook/list";
+    }
   });
 }
 
@@ -31,6 +32,6 @@ async function submitLogin() {
 }
 
 // 회원가입 창으로 이동
-function moveSignUp() {
-  location.href = "/auth/newUser";
+function movejoin() {
+  location.href = "/auth/join";
 }

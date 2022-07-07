@@ -18,7 +18,9 @@ const authenticateAccessToken = (req, res, next) => {
 
   if (!token) {
       console.log("wrong token format or token is not sended");
-      return res.sendStatus(400);
+      return res.sendStatus(400).json({
+        message: "토큰 형식이 잘못되었거나, 토큰이 전달되지 않았습니다."
+      });
   }
 
   jwt.verify(token, process.env.JWT_ACCESS_TOKEN, (error, user) => {

@@ -4,7 +4,7 @@ const pool = require("../db/config");
  * @code writer 장덕수
  * @description 사용자 인증 시 사용되는 sql구문 클래스로 정의
  *
- * @auth.signUp 회원가입 메소드
+ * @auth.join 회원가입 메소드
  * @auth.checkId 아이디 중복 확인 메소드
  * @auth.checkUser 로그인 시 유저 정보 조회 메소드
  *
@@ -12,7 +12,7 @@ const pool = require("../db/config");
  */
 class AuthService {
   // 회원가입 메소드
-  static async signUp(member_id, member_pw, member_name, phone_number) {
+  static async join(member_id, member_pw, member_name, phone_number) {
     const sql = `INSERT INTO member (member_id, member_pw, member_name, phone_number) VALUES ('${member_id}', '${member_pw}', '${member_name}', '${phone_number}');`;
     let connection = null;
     try {

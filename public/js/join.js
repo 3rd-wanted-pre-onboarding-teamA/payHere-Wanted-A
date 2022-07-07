@@ -25,14 +25,17 @@ async function checkIdAction() {
 }
 
 // 회원가입 클릭 동작
-function clickSignUp() {
-  submitSignUp().then(message => {
+function clickJoin() {
+  submitJoin().then(message => {
     alert(message);
+    if (result.message === "회원가입이 완료되었습니다.") {
+      location.href = "/auth/login";
+    }
   });
 }
 
 // 회원가입 제출
-async function submitSignUp() {
+async function submitJoin() {
   try {
     const data = {
       member_id: document.getElementById("member_id").value,
@@ -48,7 +51,7 @@ async function submitSignUp() {
       body : JSON.stringify(data)
     };
 
-    const submit = await fetch("/auth/newUserAction", opt);
+    const submit = await fetch("/auth/joinAction", opt);
     const result = await submit.json();
     return result.message;
   } catch (err) {
