@@ -10,7 +10,9 @@ const authValidator = [
   body("member_name")
     .isLength({ max: 10 })
     .withMessage("10글자 미만으로 작성해주세요!"), // 유저 이름은 10글자 이하여야 한다.
-  body("phone_number").isMobilePhone(),
+  body("phone_number")
+    .isMobilePhone()
+    .withMessage("전화번호 형식에 맞게 입력해주세요!"),
   body("balance")
     .isNumeric()
     .withMessage("숫자만 입력해주세요!")  // 잔액은 숫자로만 받는다.
