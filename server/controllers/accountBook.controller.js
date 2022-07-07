@@ -14,14 +14,13 @@ class AccountBookController {
 
     const { type, amount, purpose, payment, memo } = req.body;
     try {
-      // const [result] = await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
-      await AccountBookService.create(req.member_id, type, amount, purpose, payment, memo);
+      const [result] = await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
 
-      res.status(201).json({ message: "가계부 작성 완료!" });
-      // res.status(201).render("create.ejs", {
-      //   message: "가계부 등록 성공!",
-      //   create: result,
-      // })
+      // res.status(201).json({ message: "가계부 작성 완료!" });
+      res.status(201).render("create.ejs", {
+        message: "가계부가 등록되었습니다.",
+        create: result,
+      })
     } catch (err) {
       throw err;
     }
