@@ -125,12 +125,16 @@ class AuthController {
         });
 
       const accessToken = generateAccessToken(user[0].member_id);
-      const refreshToken = generateRefreshToken(user[0].member_id);
+
+      const exToken = await AuthService.searchRefreshToken(member_id);
+      if (!exToken[0]) {
+        const refreshToken = generateRefreshToken(user[0].member_id);
+        await AuthService.saveRefreshToken(member_id, refreshToken);   // 리프레시 토큰 DB에 저장
+      }
 
       res.json({
         message: "로그인이 되었습니다.",
-        accessToken,
-        refreshToken,
+        accessToken
       });
     } catch (err) {
       throw err;

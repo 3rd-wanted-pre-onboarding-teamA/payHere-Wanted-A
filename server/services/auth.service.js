@@ -71,6 +71,36 @@ class AuthService {
     }
   }
 
+  // resfresh토큰 조회
+  static async searchRefreshToken(member_id) {
+    const sql = `SELECT refresh_token FROM refresh_token WHERE member_id = '${member_id}'`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      const [result] = await connection.query(sql);
+      return result;
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
+  }
+
+  // 로그인 시 refresh토큰 DB 저장
+  static async saveRefreshToken(member_id, token) {
+    const sql = `INSERT INTO refresh_token (member_id, refresh_token) VALUES ('${member_id}', '${token}');`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      const [result] = await connection.query(sql);
+      return result;
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
+  }
+
   // mypage 정보 조회 메소드
   static async mypage(member_id) {
     const sql = `
