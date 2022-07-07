@@ -10,6 +10,7 @@ router.post("/checkIdAction", checkEmail, AuthController.checkId);
 router.get("/login", AuthController.login);
 router.post("/loginAction", checkEmail, AuthController.loginAction);
 router.get("/mypage", authenticateAccessToken, AuthController.mypage);
-router.post("/refresh", AuthController.refresh);
+router.get("/refresh", AuthController.refresh);
+router.get("/logout", authenticateAccessToken, AuthController.logout);
 
 module.exports = router;

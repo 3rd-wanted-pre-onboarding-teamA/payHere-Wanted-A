@@ -120,6 +120,21 @@ class AuthService {
       connection.release();
     }
   }
+
+  // 로그아웃 시 리프레시 토큰 데이터 삭제
+  static async logout(member_id) {
+    const sql = `DELETE FROM refresh_token WHERE member_id = '${member_id}';`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      const [result] = await connection.query(sql);
+      return result;
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
+  }
 }
 
 module.exports = AuthService;

@@ -133,7 +133,7 @@ class AuthController {
         await AuthService.saveRefreshToken(member_id, refreshToken);   // 리프레시 토큰 DB에 저장
       }
 
-      res.json({
+      res.status(200).json({
         message: "로그인이 되었습니다.",
         accessToken
       });
@@ -181,6 +181,19 @@ class AuthController {
       res.json({ accessToken });
     });
   };
+
+  // 로그아웃 시 리프레시 토큰 삭제
+  static logout = async function (req, res) {
+    const userId = req.user.id;
+    try {
+      await AuthService.logout(userId);
+      return res.status(204).json({
+        message: "로그아웃 되었습니다."
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = AuthController;
