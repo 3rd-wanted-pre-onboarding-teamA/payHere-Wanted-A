@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <link type="text/css" rel="stylesheet" href="/css/mypage.css" />
-    <script src="/js/mypage.js"> </script>
+    <script src="/js/mypage.js"></script>
     <title>마이페이지</title>
   </head>
   <body>
@@ -14,10 +14,13 @@
           </div>
           <div class="line"></div>
           <div class="contents-item">
-            <div><span class="contents-type">이메일</span> <%= myInfo.member_id %> </div>
-            <div><span class="contents-type">이름</span> <%= myInfo.member_name %> </div>
-            <div><span class="contents-type">전화번호</span> <%= myInfo.phone_number %> </div>
-            <div><span class="contents-type">잔액</span> <%= myInfo.balance %> </div>
+            <div><span class="contents-type">이메일</span> <%= myInfo.member_id %></div>
+            <div><span class="contents-type">이름</span> <%= myInfo.member_name %></div>
+            <div><span class="contents-type">전화번호</span> <%= myInfo.phone_number %></div>
+            <div><span class="contents-type">잔액</span> <%= myInfo.balance %></div>
+            <div>
+              <button class="btn form__submit-btn" type="submit" onclick="accountBookList()">내 가계부로 가기</button>
+            </div>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <link type="text/css" rel="stylesheet" href="/css/login.css" />
-    <script src="/js/login.js"> </script>
+    <script src="/js/login.js"></script>
     <title>로그인</title>
   </head>
   <body>
@@ -14,12 +14,14 @@
           </div>
           <div class="line"></div>
           <div class="contents-align">
-            <div>이메일</div>
-            <input type="email" id="member_id" placeholder="이메일을 적어주세요 (예시: goodnight@gmail.com)">
-            <div>비밀번호</div>
-            <input type="password" id="member_pw" placeholder="비밀번호를 적어주세요 (6글자 이상)">
-            <button class="login-button" onclick="clickLogin()">로그인하기</button>
-            <button onclick="moveJoin()">회원가입</button>
+            <h3>이메일</h3>
+            <input type="email" id="member_id" placeholder="이메일을 적어주세요 (예시: goodnight@gmail.com)" />
+            <h3>비밀번호</h3>
+            <div>
+              <input type="password" id="member_pw" placeholder="비밀번호를 적어주세요 (6글자 이상)" />
+              <button class="login-button" onclick="clickLogin()">로그인하기</button>
+              <button onclick="moveJoin()">회원가입</button>
+            </div>
           </div>
         </div>
       </div>
