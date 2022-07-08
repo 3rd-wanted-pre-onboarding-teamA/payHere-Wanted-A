@@ -132,9 +132,10 @@ class AuthController {
         await AuthService.saveRefreshToken(member_id, refreshToken);   // 리프레시 토큰 DB에 저장
       }
 
+      res.setHeader("Authorization", "Bearer" + accessToken);
+      res.cookie("access-token", accessToken);
       res.status(200).json({
-        message: "로그인이 되었습니다.",
-        accessToken
+        message: "로그인이 되었습니다."
       });
     } catch (err) {
       throw err;
@@ -186,6 +187,7 @@ class AuthController {
     const userId = req.user.id;
     try {
       await AuthService.logout(userId);
+      res.clearCookie("access-token");
       return res.status(204).json({
         message: "로그아웃 되었습니다."
       });

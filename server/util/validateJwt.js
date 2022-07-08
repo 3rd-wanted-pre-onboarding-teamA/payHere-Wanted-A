@@ -10,8 +10,8 @@ dotenv.config();
  * @returns res.user (토큰으로 확인한 유저의 정보)
  */
 const authenticateAccessToken = (req, res, next) => {
-  let authHeader = req.headers["authorization"];
-  let token = authHeader && authHeader.split(" ")[1];
+  let authHeader = req.headers["cookie"];
+  let token = authHeader.replace("access-token=", "");
 
   if (!token) {
       console.log("wrong token format or token is not sended");
