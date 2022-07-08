@@ -7,21 +7,22 @@ const {
   generateAccessToken,
   generateRefreshToken,
 } = require("../util/generateToken");
+const authenticateAccessToken = require("../util/validateJwt");
 
 dotenv.config();
 
 class AuthController {
   // 회원가입 브라우저 화면
-  static signUp = async function (req, res) {
+  static join = async function (req, res) {
     try {
-      res.render("signup.ejs");
+      res.render("join.ejs");
     } catch (err) {
       throw err;
     }
   };
 
   // 회원가입
-  static signUpAction = async function (req, res) {
+  static joinAction = async function (req, res) {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -40,7 +41,7 @@ class AuthController {
         return res.status(500).send("Server Error");
       } else {
         // member 테이블에 유저 정보 저장
-        AuthService.signUp(
+        AuthService.join(
           member_id,
           hashedPassword,
           member_name,
@@ -125,12 +126,16 @@ class AuthController {
         });
 
       const accessToken = generateAccessToken(user[0].member_id);
-      const refreshToken = generateRefreshToken(user[0].member_id);
 
-      res.json({
+      const exToken = await AuthService.searchRefreshToken(member_id);
+      if (!exToken[0]) {
+        const refreshToken = generateRefreshToken(user[0].member_id);
+        await AuthService.saveRefreshToken(member_id, refreshToken);   // 리프레시 토큰 DB에 저장
+      }
+
+      res.status(200).json({
         message: "로그인이 되었습니다.",
-        accessToken,
-        refreshToken,
+        accessToken
       });
     } catch (err) {
       throw err;
@@ -152,18 +157,43 @@ class AuthController {
   };
 
   // access토큰 만료 시 재발급
-  static refresh = function (req, res) {
-    const refreshToken = req.body.refreshToken;
+  static refresh = async function (req, res) {
+    const authHeader = req.headers["authorization"];
+    const authToken = authHeader && authHeader.split(" ")[1];
+
+    // access 토큰 디코딩하여 user 정보 조회
+    const decoded = jwt.decode(authToken);
+    
+    // 디코딩 결과가 없으면 권한 없음 응답
+    if (decoded === null) {
+      return res.status(401).send({
+        message: "No authorized!"
+      });
+    }
+    
+    // 디코딩된 값에서 유저 id 가져와 리프레시 토큰 검증
+    const refreshToken = await AuthService.searchRefreshToken(decoded.id);
     if (!refreshToken) return res.sendStatus(401);
-
-    jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN, (error, user) => {
+    
+    jwt.verify(refreshToken[0].refresh_token, process.env.JWT_REFRESH_TOKEN, (error, user) => {
       if (error) return res.sendStatus(403);
-
       const accessToken = generateAccessToken(user.id);
-
       res.json({ accessToken });
     });
   };
+
+  // 로그아웃 시 리프레시 토큰 삭제
+  static logout = async function (req, res) {
+    const userId = req.user.id;
+    try {
+      await AuthService.logout(userId);
+      return res.status(204).json({
+        message: "로그아웃 되었습니다."
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = AuthController;

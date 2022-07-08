@@ -11,14 +11,13 @@ dotenv.config();
  */
 const authenticateAccessToken = (req, res, next) => {
   let authHeader = req.headers["authorization"];
-  console.log("@@@@@@@@@@@@@@@@@@@@@@");
-  console.log(req.headers);
-  console.log("@@@@@@@@@@@@@@@@@@@@@@");
   let token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
       console.log("wrong token format or token is not sended");
-      return res.sendStatus(400);
+      return res.sendStatus(400).json({
+        message: "토큰 형식이 잘못되었거나, 토큰이 전달되지 않았습니다."
+      });
   }
 
   jwt.verify(token, process.env.JWT_ACCESS_TOKEN, (error, user) => {

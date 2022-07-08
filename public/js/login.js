@@ -2,9 +2,10 @@
 function clickLogin() {
   submitLogin().then(result => {
     alert(result.message);
-    localStorage.setItem("access-token", result.accessToken);
-    localStorage.setItem("refresh-token", result.refreshToken);
-    location.href = "/accountBook/list"
+    if (result.message === "로그인이 되었습니다.") {
+      localStorage.setItem("access-token", result.accessToken);
+      routeValid("/auth/mypage");
+    }
   });
 }
 
@@ -31,6 +32,25 @@ async function submitLogin() {
 }
 
 // 회원가입 창으로 이동
-function moveSignUp() {
-  location.href = "/auth/newUser";
+function moveJoin() {
+  location.href = "/auth/join";
+}
+
+// fetch 시 헤더에 토큰 추가
+function routeValid(route) {
+  try {
+    const token = "bearer " + localStorage.getItem("access-token")
+    fetch(route, {
+      method: "GET",
+      headers: { Authorization: token },
+    })
+      .then(res => res.text())
+      .then(htmlStr => {
+        document.open();
+        document.write(htmlStr);
+        document.close();
+      })
+  } catch (err) {
+    console.log(err);
+  }
 }

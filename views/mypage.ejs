@@ -9,7 +9,6 @@
   <title>회원가입</title>
 </head>
 <body>
-  <% mypage() %>
   <div class="wrap">
     <div class="contents-main">
       <div class="contents-container">
@@ -17,7 +16,12 @@
           <div class="contents-balence">마이페이지</div>
         </div>
         <div class="line"></div>
-        <%= myInfo %>
+        <div class="no-data-text">
+          이메일: <%= myInfo.member_id %> <br><br>
+          이름: <%= myInfo.member_name %> <br><br>
+          전화번호: <%= myInfo.phone_number %> <br><br>
+          잔액: <%= myInfo.balance %> <br><br>
+        </div>
       </div>
     </div>
   </div>
