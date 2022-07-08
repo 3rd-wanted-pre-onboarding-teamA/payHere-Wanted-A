@@ -1,12 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="/css/create.css">
+    <script src="/js/create.js"></script>
+    <title>가계부 등록하기</title>
 </head>
 <body>
-    
+    <form action="/createAction" method="post">
+        <div class="wrap">
+            <div class="contents-main">
+                <div class="contents-container">
+                    <div class="contents-header">
+                        <div class="contents-create">가계부 등록</div>
+                    </div>
+                    <div class="line"></div>
+                    <div class=""></div>
+                    <div class="contents-item">
+                        <div class="contents-item-align">
+                        <% if (accountBook === "nothing") { %>
+                            <div class="contents-item-type">
+                                <label for="type">분류</label>
+                                <input type="radio" name="type" id="in" value="수입" checked>
+                                <label for="수입">수입</label>
+                                <input type="radio" name="type" id="out" value="지출">
+                                <label for="지출">지출</label>
+                                <div></div>
+                            </div>
+                            <div class="contents-item-amount">
+                                <label for="amount">금액</label>
+                                <input type="text" name="amount" id="amount"> 
+                            </div>
+                            <div class="contents-item-purpose">
+                                <label for="purpose">목적</label>
+                                <input type="text" name="purpose" id="purpose">
+                            </div>
+                            <div class="contents-item-payment">
+                                <label for="payment">결제 수단</label>
+                                <input type="radio" name="payment" id="card" value="카드" checked class="payment">
+                                <label for="카드">카드</label>
+                                <input type="radio" name="payment" id="bill" value="현금" class="payment">
+                                <label for="현금">현금</label>
+                            </div>
+                            <div class="contents-item-memo">
+                                <label for="memo">메모</label>
+                                <input type="text" name="memo" id="memo">
+                            </div>
+                            <div class="contents-item-button">
+                                <input type="button" value="등록하기" onclick="clickCreate()" id="submit">
+                            </div>
+                            </div>
+                        </form>
+                        <form action="/create" method="get">
+                            <% } %>
+                            <!-- <% if (accountBook !== "nothing") { %>
+                                <div class="contents-item-type">
+                                    <div class="result">
+                                        <label for="value">분류</label>
+                                        <%= accountBook.type%>
+                                    </div>
+                                    <div></div>
+                                </div>
+                                <div class="contents-item-amount">
+                                    <div class="result">
+                                        <label for="amount">금액</label>
+                                        <%= accountBook.amount%>
+                                    </div>
+                                </div>
+                                <div class="contents-item-purpose">
+                                    <div class="result">
+                                        <label for="purpose">목적</label>
+                                        <%= accountBook.purpose%>
+                                    </div>
+                                </div>
+                                <div class="contents-item-payment">
+                                    <div class="result">
+                                        <label for="payment">결제 수단</label>
+                                        <%= accountBook.payment%>
+                                    </div>
+                                </div>
+                                <div class="contents-item-memo">
+                                    <div class="result">
+                                        <label for="memo">메모</label>
+                                        <%= accountBook.memo%>
+                                    </div>
+                                </div>
+                                </div>
+                                <% } %> -->
+                        </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
+
+
