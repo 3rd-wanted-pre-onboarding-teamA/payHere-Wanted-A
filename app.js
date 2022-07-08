@@ -11,7 +11,7 @@ class App {
     this.setMiddleWare();
     this.setStatic();
     this.getRouting();
-    // this.errorHandler();
+    this.errorHandler();
   }
 
   setMiddleWare() {
@@ -34,16 +34,15 @@ class App {
     this.app.use("/", index);
   }
 
-  // TODO: 에러 핸들링, 공통 에러 화면 필요
-  // errorHandler() { 
-  //   this.app.use((req, res, _) => {
-  //     res.status(404).render("404.ejs");
-  //   });
+  errorHandler() {
+    this.app.use((req, res, _) => {
+      res.status(400).render("error.ejs", { status: 404, message: "잘못된 접근입니다." });
+    });
 
-  //   this.app.use((err, req, res, _) => {
-  //     res.status(500).render("500.ejs");
-  //   });
-  // }
+    this.app.use((req, res, _) => {
+      res.status(500).render("error.ejs", { status: 500, message: "서버에러입니다." });
+    });
+  }
 }
 
 module.exports = new App().app;

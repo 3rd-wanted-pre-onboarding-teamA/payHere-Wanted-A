@@ -7,7 +7,6 @@ const {
   generateAccessToken,
   generateRefreshToken,
 } = require("../util/generateToken");
-const authenticateAccessToken = require("../util/validateJwt");
 
 dotenv.config();
 
@@ -15,7 +14,7 @@ class AuthController {
   // 회원가입 브라우저 화면
   static join = async function (req, res) {
     try {
-      res.render("join.ejs");
+      res.status(200).render("join.ejs");
     } catch (err) {
       throw err;
     }
@@ -38,7 +37,7 @@ class AuthController {
 
       const exUser = await AuthService.checkId(member_id);
       if (exUser[0]) {
-        return res.status(500).send("Server Error");
+        return res.render("error.ejs", { status: 500, message: "서버 에러입니다." });
       } else {
         // member 테이블에 유저 정보 저장
         AuthService.join(
@@ -92,7 +91,7 @@ class AuthController {
   // 로그인 브라우저 화면
   static login = async function (req, res) {
     try {
-      res.render("login.ejs");
+      res.status(200).render("login.ejs");
     } catch (err) {
       throw err;
     }
@@ -148,7 +147,7 @@ class AuthController {
     try {
       if (!userId) return res.status(401);
       const [result] = await AuthService.mypage(userId);
-      res.render("mypage.ejs", {
+      res.status(200).render("mypage.ejs", {
         myInfo: result
       });
     } catch (err) {
