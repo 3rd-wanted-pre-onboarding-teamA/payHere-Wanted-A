@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <link type="text/css" rel="stylesheet" href="/css/mypage.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="/js/mypage.js"> </script>
-  <script src="/js/logout.js"> </script>
-  <title>마이페이지</title>
-</head>
-<body>
-  <div class="wrap">
-    <div class="contents-main">
-      <div class="contents-container">
-        <div class="contents-header">
-          <div class="contents-balence">마이페이지</div>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/mypage.css" />
+    <script src="/js/mypage.js"> </script>
+    <title>마이페이지</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="contents-main">
+        <div class="contents-container">
+          <div class="contents-header">
+            <div class="contents-mypage">마이페이지</div>
+          </div>
+          <div class="line"></div>
+          <div class="contents-item">
+            <div><span class="contents-type">이메일</span> <%= myInfo.member_id %> </div>
+            <div><span class="contents-type">이름</span> <%= myInfo.member_name %> </div>
+            <div><span class="contents-type">전화번호</span> <%= myInfo.phone_number %> </div>
+            <div><span class="contents-type">잔액</span> <%= myInfo.balance %> </div>
+          </div>
         </div>
-        <div class="line"></div>
-        <div class="no-data-text">
-          이메일: <%= myInfo.member_id %> <br><br>
-          이름: <%= myInfo.member_name %> <br><br>
-          전화번호: <%= myInfo.phone_number %> <br><br>
-          잔액: <%= myInfo.balance %> <br><br>
-        </div>
-        <button type="button" onclick="logout()">로그아웃</button>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
