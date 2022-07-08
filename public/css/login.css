@@ -47,7 +47,6 @@
   line-height: 50px;
   font-size: 15pt;
   font-weight: bold;
-  margin: 10px 0 5px 0;
 }
 
 input {
@@ -61,13 +60,18 @@ input:focus {
   outline: none;
 }
 
+.button-align {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
 button {
-  margin-top: 50;
   font-size: 14px;
-  width: 120px;
-  margin: 0 0.5em;
+  width: 185px;
+  margin: 0;
   border-radius: 2em;
-  padding: 0.75em 1.5em;
+  padding: 1em 1.8em;
   cursor: pointer;
   background: none;
   border: 1px solid;
@@ -75,10 +79,6 @@ button {
   color: salmon;
   border: salmon 1.5px solid;
   transition: 250ms ease-out;
-}
-
-.login-button {
-  margin-right: 34px;
 }
 
 button:hover,

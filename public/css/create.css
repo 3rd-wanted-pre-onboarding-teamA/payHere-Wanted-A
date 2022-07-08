@@ -86,11 +86,22 @@ input:focus {
 }
 
 button {
+  font-size: 14px;
   width: 100%;
-  height: 50px;
-  border: 0;
-  font-size: 15pt;
-  font-weight: bold;
-  border-radius: 5px;
   margin-top: 30px;
+  border-radius: 2em;
+  padding: 1em 1.8em;
+  cursor: pointer;
+  background: none;
+  border: 1px solid;
+  letter-spacing: 1px;
+  color: salmon;
+  border: salmon 1.5px solid;
+  transition: 250ms ease-out;
+}
+
+button:hover,
+button:focus {
+  color: #fff;
+  background: salmon;
 }
