@@ -2,14 +2,6 @@ const pool = require("../db/config");
 
 class AccountBookService {
 
-  // static async getUserWithToken(req, res) {
-  //   let authHeader = req.headers['authorization'];
-  //   if (!authHeader) {
-  //     return res.status(401).send({
-  //       message: 'invalid access token',
-  //     });
-  //   }
-
   static async create(member_id, type, amount, purpose, payment, memo) {
     const sql = `INSERT INTO account_book (member_id, type, amount, purpose, payment, memo) VALUES ?`;
     const values = [
