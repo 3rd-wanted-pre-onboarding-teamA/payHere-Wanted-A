@@ -7,6 +7,30 @@ function trash() {
   location.href = "/accountBook/deletedList";
 }
 
+function toMypage(id) {
+  location.href = "/auth/mypage";
+}
+
+function logout() {
+  submitLogout().then((message) => {
+    alert(message);
+    if (message === "로그아웃 되었습니다.") {
+      location.href = "/auth/login";
+    }
+  });
+}
+
+// 로그아웃 실행
+async function submitLogout() {
+  try {
+    const submit = await fetch("/auth/logout");
+    const result = await submit.json();
+    return result.message;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // 수정하기로 이동
 function update(id) {
   // console.log("aaa");
