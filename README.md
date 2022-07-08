@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat&logo=Amazon RDS&logoColor=white"/>
   <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat&logo=Amazon EC2S&logoColor=white"/>
 </p>
-
+ README TODO: version 정보 업데이트
 
   ## 🌈 Team A members  
 
@@ -50,6 +50,9 @@
 
 
 ## ✔️ 구현 기능
+
+<img src="https://user-images.githubusercontent.com/22606199/177725389-38d3a111-291d-4abb-bc11-80a28abf1942.png" width="500"/>
+
 ```
 1. 회원 가입 및 로그인 -> 예외 처리 필요
 2. 가계부에 오늘 사용한 돈, 메모 기록 -> 구현 완료
@@ -78,11 +81,30 @@ TODO
 ~~swagger를 통해 정리 예정~~
 
 
-
 ## TDD
 
 Jest로 테스트 코드 구현
 ~~예시 넣기~~
 
 
-
+## RestAPI
+~~이후 swagger로 보여줄 예정~~
+  |  | METHOD | URL | 
+| --- | --- | --- | 
+| 회원가입 | GET | /auth/signup |
+| 회원가입 동작 | POST | /auth/newUserAction |
+| id 중복 검사 동작 | POST | /auth/checkIdAction |
+| 토큰 중복검사 동작 | POST | /auth/validateAction |
+| 로그인 | GET | /auth/login |
+| 로그인 동작  | POST | /auth/loginAction |
+| 로그아웃 | POST | /auth/logout |
+| 회원정보 | GET | /mypage |
+| 가계부 등록 | GET | /accountBook/create |
+| 가계부 등록 동작  | POST | /accountBook/createAction |
+| 가계부 수정 | GET | /accountBook/update |
+| 가계부 수정 동작 | PUT | /accountBook/updateAction?id=1 |
+| 가계부 삭제 | PUT | /accountBook/delete?id=1 |
+| 삭제 가계부 리스트 | GET | /accountBook/deletedList |
+| 삭제 가계부 복원 | PUT | /accountBook/restore?id=1 |
+| 가계부 리스트 | GET | /accountBook/list |
+| 가계부 상세 내역 | GET | /accountBook/detail?id=1 |
