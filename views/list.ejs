@@ -35,8 +35,8 @@
               <div class="contents-item-date"><%= data.reg_date %></div>
               <div class="contents-item-group">
                 <img class="detail-button" src="/images/detail.png" alt="더보기" data-toggle="tooltip" title="detail" onclick="detail('<%= data.account_book_id %>')"/>
-                <img class="update-button" src="/images/update.png" alt="수정" data-toggle="tooltip" title="update" />
-                <img class="delete-button" src="/images/delete.png" alt="삭제" data-toggle="tooltip" title="delete" />
+                <img class="update-button" src="/images/update.png" alt="수정" data-toggle="tooltip" title="update" onclick="update('<%= data.account_book_id %>')" / >
+                <img class="delete-button" src="/images/delete.png" alt="삭제" data-toggle="tooltip" title="delete" onclick="remove('<%= data.account_book_id %>')" />
                 <div class="contents-item-purpose"><%= data.purpose %></div>
                 <% if (data.type == "수입") { %>
                 <div class="contents-item-money"><span class="income"><%= data.type %> <%= data.amount %></span> 원</div>

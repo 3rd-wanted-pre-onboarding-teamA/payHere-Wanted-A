@@ -2,15 +2,6 @@ const pool = require("../db/config");
 
 class AccountBookService {
 
-  static async getById(id) {
-    const SELECT_JOIN = 
-    'SELECT ac.account_book_id, ac.member_id, ac.type, ac.amount, ac.state, ac.memo, m.member_name FROM account_book as ac JOIN member as m ON ac.member_id=m.member_id';
-
-    return pool
-        .execute(`${SELECT_JOIN} WHERE ac.account_book_id=?`, [id])
-        .then(result => result[0][0]);
-  }
-
   static async create(member_id, type, amount, purpose, payment, memo) {
     const sql = `INSERT INTO account_book (member_id, type, amount, purpose, payment, memo) VALUES ?`;
     const values = [
