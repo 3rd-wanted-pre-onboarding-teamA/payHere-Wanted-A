@@ -1,6 +1,6 @@
 //아이디 중복 검사 클릭 동작
 function clickCheckId() {
-  checkIdAction().then(message => {
+  checkIdAction().then((message) => {
     alert(message);
   });
 }
@@ -9,13 +9,13 @@ function clickCheckId() {
 async function checkIdAction() {
   try {
     const data = {
-      member_id : document.getElementById("member_id").value
-    }
+      member_id: document.getElementById("member_id").value,
+    };
     const opt = {
       method: "POST",
-      headers : {"Content-Type" : "application/json"},
-      body: JSON.stringify(data)
-    }
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
     const checkIdValid = await fetch("/auth/checkIdAction", opt);
     const result = await checkIdValid.json();
     return result.message;
@@ -26,7 +26,7 @@ async function checkIdAction() {
 
 // 회원가입 클릭 동작
 function clickJoin() {
-  submitJoin().then(message => {
+  submitJoin().then((message) => {
     alert(message);
     if (message === "회원가입이 완료되었습니다.") {
       location.href = "/auth/login";
@@ -42,13 +42,13 @@ async function submitJoin() {
       member_pw: document.getElementById("member_pw").value,
       member_name: document.getElementById("member_name").value,
       phone_number: document.getElementById("phone_number").value,
-      balance: document.getElementById("balance").value
-    }
+      balance: document.getElementById("balance").value,
+    };
 
     const opt = {
       method: "POST",
-      headers : {"Content-Type" : "application/json"},
-      body : JSON.stringify(data)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     };
 
     const submit = await fetch("/auth/joinAction", opt);

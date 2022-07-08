@@ -1,10 +1,9 @@
 // 로그인 클릭 동작
 function clickLogin() {
-  submitLogin().then(result => {
-    alert(result.message);
-    if (result.message === "로그인이 되었습니다.") {
-      localStorage.setItem("access-token", result.accessToken);
-      routeValid("/auth/mypage");
+  submitLogin().then(message => {
+    alert(message);
+    if (message === "로그인이 되었습니다.") {
+      location.href = "/auth/mypage";
     }
   });
 }
@@ -25,7 +24,7 @@ async function submitLogin() {
 
     const submit = await fetch("/auth/loginAction", opt);
     const result = await submit.json();
-    return result;
+    return result.message;
   } catch (err) {
     throw err;
   }
@@ -34,23 +33,4 @@ async function submitLogin() {
 // 회원가입 창으로 이동
 function moveJoin() {
   location.href = "/auth/join";
-}
-
-// fetch 시 헤더에 토큰 추가
-function routeValid(route) {
-  try {
-    const token = "bearer " + localStorage.getItem("access-token")
-    fetch(route, {
-      method: "GET",
-      headers: { Authorization: token },
-    })
-      .then(res => res.text())
-      .then(htmlStr => {
-        document.open();
-        document.write(htmlStr);
-        document.close();
-      })
-  } catch (err) {
-    console.log(err);
-  }
 }
