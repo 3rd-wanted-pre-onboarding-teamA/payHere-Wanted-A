@@ -1,3 +1,4 @@
+// 로그아웃 클릭 동작
 function logout() {
   submitLogout().then((message) => {
     alert(message);
@@ -7,6 +8,7 @@ function logout() {
   });
 }
 
+// 로그아웃 실행
 async function submitLogout() {
   try {
     const submit = await fetch("/auth/logout");

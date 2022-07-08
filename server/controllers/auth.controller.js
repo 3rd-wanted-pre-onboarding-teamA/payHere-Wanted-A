@@ -97,14 +97,14 @@ class AuthController {
       const user = await AuthService.checkUser(member_id);
 
       if (!user[0])
-        return res.json({
+        return res.status(400).json({
           message: "유효하지 않은 아이디입니다.",
           success: false,
         });
 
       const isMatch = await bcrypt.compare(member_pw, user[0].member_pw);
       if (!isMatch)
-        return res.json({
+        return res.status(400).json({
           message: "유효하지 않은 비민번호입니다.",
           success: false,
         });
@@ -143,16 +143,16 @@ class AuthController {
 
   // access토큰 만료 시 재발급
   static refresh = async function (req, res) {
-    const authHeader = req.headers["authorization"];
-    const authToken = authHeader && authHeader.split(" ")[1];
+    const authHeader = req.headers["cookie"];
+    const token = authHeader.replace("access-token=", "");
 
     // access 토큰 디코딩하여 user 정보 조회
-    const decoded = jwt.decode(authToken);
-
+    const decoded = jwt.decode(token);
+    
     // 디코딩 결과가 없으면 권한 없음 응답
     if (decoded === null) {
       return res.status(401).send({
-        message: "No authorized!",
+        message: "해당 토큰이 권한이 없습니다."
       });
     }
 
@@ -163,7 +163,11 @@ class AuthController {
     jwt.verify(refreshToken[0].refresh_token, process.env.JWT_REFRESH_TOKEN, (error, user) => {
       if (error) return res.sendStatus(403);
       const accessToken = generateAccessToken(user.id);
-      res.json({ accessToken });
+      res.setHeader("Authorization", "Bearer" + accessToken);
+      res.cookie("access-token", accessToken);
+      res.status(200).json({
+        message: "엑세스 토큰이 재발급되었습니다."
+      });
     });
   };
 
