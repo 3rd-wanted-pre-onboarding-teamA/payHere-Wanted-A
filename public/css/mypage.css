@@ -3,6 +3,7 @@
   height: 100%;
   position: relative;
   display: flex;
+  color: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
   flex-flow: column nowrap;
 }
 
@@ -28,7 +29,7 @@
   font-weight: bold;
   line-height: 45px;
   text-align: left;
-  color: #e27160;
+  color: salmon;
   letter-spacing: 2px;
 }
 
@@ -53,11 +54,31 @@
 }
 
 .contents-item .contents-type {
-  color: #e27160;
+  color: salmon;
   background: #eee;
   font-size: 14pt;
   font-weight: bold;
   border: 0;
   border-radius: 5px;
   padding: 4px 10px;
+}
+
+.btn {
+  font-size: 14px;
+  margin: 0 0.5em;
+  border-radius: 2em;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+  background: none;
+  border: 1px solid;
+  letter-spacing: 1px;
+  color: salmon;
+  border: salmon 1.5px solid;
+  transition: 250ms ease-out;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  background: salmon;
 }

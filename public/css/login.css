@@ -27,7 +27,7 @@
   font-weight: bold;
   line-height: 45px;
   text-align: left;
-  color: #e27160;
+  color: salmon;
   letter-spacing: 2px;
 }
 
@@ -62,14 +62,27 @@ input:focus {
 }
 
 button {
-  width: 180px;
-  height: 50px;
-  border: 0;
-  font-size: 12pt;
-  border-radius: 5px;
-  margin-top: 50px;
+  margin-top: 50;
+  font-size: 14px;
+  width: 120px;
+  margin: 0 0.5em;
+  border-radius: 2em;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+  background: none;
+  border: 1px solid;
+  letter-spacing: 1px;
+  color: salmon;
+  border: salmon 1.5px solid;
+  transition: 250ms ease-out;
 }
 
 .login-button {
   margin-right: 34px;
+}
+
+button:hover,
+button:focus {
+  color: #fff;
+  background: salmon;
 }
