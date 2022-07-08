@@ -17,7 +17,6 @@
                     <div class=""></div>
                     <div class="contents-item">
                         <div class="contents-item-align">
-                        <% if (accountBook === "nothing") { %>
                             <div class="contents-item-type">
                                 <label for="type">분류</label>
                                 <input type="radio" name="type" id="in" value="수입" checked>
@@ -36,7 +35,7 @@
                             </div>
                             <div class="contents-item-payment">
                                 <label for="payment">결제 수단</label>
-                                <input type="radio" name="payment" id="card" value="카드" checked class="payment">
+                                <input type="radio" name="payment" id="card" value="카드" class="payment" checked>
                                 <label for="카드">카드</label>
                                 <input type="radio" name="payment" id="bill" value="현금" class="payment">
                                 <label for="현금">현금</label>
@@ -51,41 +50,6 @@
                             </div>
                         </form>
                         <form action="/create" method="get">
-                            <% } %>
-                            <!-- <% if (accountBook !== "nothing") { %>
-                                <div class="contents-item-type">
-                                    <div class="result">
-                                        <label for="value">분류</label>
-                                        <%= accountBook.type%>
-                                    </div>
-                                    <div></div>
-                                </div>
-                                <div class="contents-item-amount">
-                                    <div class="result">
-                                        <label for="amount">금액</label>
-                                        <%= accountBook.amount%>
-                                    </div>
-                                </div>
-                                <div class="contents-item-purpose">
-                                    <div class="result">
-                                        <label for="purpose">목적</label>
-                                        <%= accountBook.purpose%>
-                                    </div>
-                                </div>
-                                <div class="contents-item-payment">
-                                    <div class="result">
-                                        <label for="payment">결제 수단</label>
-                                        <%= accountBook.payment%>
-                                    </div>
-                                </div>
-                                <div class="contents-item-memo">
-                                    <div class="result">
-                                        <label for="memo">메모</label>
-                                        <%= accountBook.memo%>
-                                    </div>
-                                </div>
-                                </div>
-                                <% } %> -->
                         </div>
                 </div>
             </div>
