@@ -1,3 +1,3 @@
-function mypage() {
-  
+function accountBookList() {
+  location.href = "/accountBook/list";
 }

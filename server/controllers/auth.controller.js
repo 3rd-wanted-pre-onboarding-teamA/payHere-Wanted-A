@@ -148,11 +148,11 @@ class AuthController {
 
     // access 토큰 디코딩하여 user 정보 조회
     const decoded = jwt.decode(token);
-    
+
     // 디코딩 결과가 없으면 권한 없음 응답
     if (decoded === null) {
       return res.status(401).send({
-        message: "해당 토큰이 권한이 없습니다."
+        message: "해당 토큰이 권한이 없습니다.",
       });
     }
 
@@ -166,7 +166,7 @@ class AuthController {
       res.setHeader("Authorization", "Bearer" + accessToken);
       res.cookie("access-token", accessToken);
       res.status(200).json({
-        message: "엑세스 토큰이 재발급되었습니다."
+        message: "엑세스 토큰이 재발급되었습니다.",
       });
     });
   };
