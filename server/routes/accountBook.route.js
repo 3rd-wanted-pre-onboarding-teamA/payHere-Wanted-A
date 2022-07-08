@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const AccountBookController = require("../controllers/accountBook.controller")
+const authenticateAccessToken = require("../util/validateJwt");
 
-router.get("/create", AccountBookController.create);
-router.post("/createAction", AccountBookController.createAccoutBook);
-router.get("/update", AccountBookController.update);
-router.put("/updateAction", AccountBookController.updateAccountBook);
-router.get("/delete", AccountBookController.deleteAccoutBook);
-router.get("/list", AccountBookController.getAccountBookList);
-router.get("/deletedList", AccountBookController.getAccountBookDeletedList);
-router.get("/detail", AccountBookController.getAccountBookDetail);
-router.get("/restore", AccountBookController.putAccountBookRestore);
+router.get("/create", authenticateAccessToken, AccountBookController.create);
+router.post("/createAction", authenticateAccessToken, AccountBookController.createAccoutBook);
+router.get("/update", authenticateAccessToken, AccountBookController.update);
+router.put("/updateAction", authenticateAccessToken, AccountBookController.updateAccountBook);
+router.get("/delete", authenticateAccessToken, AccountBookController.deleteAccoutBook);
+router.get("/list", authenticateAccessToken, AccountBookController.getAccountBookList);
+router.get("/deletedList", authenticateAccessToken, AccountBookController.getAccountBookDeletedList);
+router.get("/detail", authenticateAccessToken, AccountBookController.getAccountBookDetail);
+router.get("/restore", authenticateAccessToken, AccountBookController.putAccountBookRestore);
 
 module.exports = router;
