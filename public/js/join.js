@@ -28,7 +28,7 @@ async function checkIdAction() {
 function clickJoin() {
   submitJoin().then(message => {
     alert(message);
-    if (result.message === "회원가입이 완료되었습니다.") {
+    if (message === "회원가입이 완료되었습니다.") {
       location.href = "/auth/login";
     }
   });
