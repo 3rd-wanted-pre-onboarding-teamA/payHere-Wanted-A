@@ -55,7 +55,7 @@
 }
 
 .contents-item > div {
-  font-size: 12pt;
+  font-size: 14pt;
   font-weight: bold;
   line-height: 50px;
 }
@@ -63,7 +63,7 @@
 .contents-item .contents-type {
   color: salmon;
   background: #eee;
-  font-size: 12pt;
+  font-size: 14pt;
   font-weight: bold;
   border: 0;
   border-radius: 5px;

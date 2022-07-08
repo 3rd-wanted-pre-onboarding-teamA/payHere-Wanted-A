@@ -40,28 +40,57 @@
   margin: 30px 0;
 }
 
-.contents-item {
-  position: relative;
-  margin-bottom: 20px;
-  width: 100%;
-  height: 150px;
+.contents-align {
+  width: 400px;
+  margin: 80px auto;
 }
 
-.contents-item > div {
-  font-size: 14pt;
+.contents-align > div, label {
+  font-size: 16pt;
   font-weight: bold;
+  margin-bottom: 5px;
+  line-height: 60px;
 }
 
-.contents-item .content-item-align {
-  display: flex;
-  width: 100%;
+input[type=text], input[type=number] {
+  width: 98%;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 13pt;
+  margin-bottom: 10px;
 }
 
-.contents-item-type {
-  display: block;
+input[type=radio], input[type=radio]:checked {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  margin-right: 0.2rem;
+}
+
+input[type=radio] {
+  background-color: white;
+  border: 2px solid #e27160;
+}
+
+input[type=radio]:checked {
+  background: #e27160;
+}
+
+input:focus {
+  outline: none;
+}
+
+.radio-group {
+  float: right;
+}
+
+button {
   width: 100%;
-  height: 2rem;
-  /* margin-top: 10px; */
-  margin-right: 10px;
-  padding-top: 100px;
+  height: 50px;
+  border: 0;
+  font-size: 15pt;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 30px;
 }
