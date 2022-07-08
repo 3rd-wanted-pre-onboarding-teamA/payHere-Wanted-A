@@ -27,7 +27,7 @@
   font-weight: bold;
   line-height: 45px;
   text-align: left;
-  color: #e27160;
+  color: salmon;
   letter-spacing: 2px;
 }
 
@@ -114,6 +114,6 @@
 }
 
 .contents-item .expenditure {
-  color: #e27160;
+  color: salmon;
   font-size: 20pt;
 }

@@ -28,7 +28,7 @@
   font-weight: bold;
   line-height: 45px;
   text-align: left;
-  color: #e27160;
+  color: salmon;
   letter-spacing: 2px;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .contents-item .contents-type {
-  color: #e27160;
+  color: salmon;
   background: #eee;
   font-size: 12pt;
   font-weight: bold;
