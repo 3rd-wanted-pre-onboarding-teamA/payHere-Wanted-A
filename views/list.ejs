@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/list.js"></script>
+    <script src="/js/create.js"></script>
     <title>가계부 목록</title>
     <script>
       $(document).ready(function () {
@@ -20,8 +21,8 @@
           <div class="contents-header">
             <div class="contents-balence">잔액: <%= balance %>원</div>
             <div class="contents-memu-group">
-              <img class="add-button" src="/images/add.png" alt="등록" data-toggle="tooltip" title="add" />
-              <img class="trash-button" src="/images/trash.png" alt="휴지통" data-toggle="tooltip" title="trash" onclick="trash()"/>
+              <img class="add-button" src="/images/add.png" alt="등록" data-toggle="tooltip" title="add" onclick="createAccoutBook()" />
+              <img class="trash-button" src="/images/trash.png" alt="휴지통" data-toggle="tooltip" title="trash" onclick="trash()" />
               <img class="user-button" src="/images/user.png" alt="사용자" data-toggle="tooltip" title="mypage" />
               <img class="logout-button" src="/images/logout.png" alt="로그아웃" data-toggle="tooltip" title="logout" />
             </div>
@@ -34,9 +35,30 @@
             <div class="content-item-align">
               <div class="contents-item-date"><%= data.reg_date %></div>
               <div class="contents-item-group">
-                <img class="detail-button" src="/images/detail.png" alt="더보기" data-toggle="tooltip" title="detail" onclick="detail('<%= data.account_book_id %>')"/>
-                <img class="update-button" src="/images/update.png" alt="수정" data-toggle="tooltip" title="update" onclick="update('<%= data.account_book_id %>')" / >
-                <img class="delete-button" src="/images/delete.png" alt="삭제" data-toggle="tooltip" title="delete" onclick="remove('<%= data.account_book_id %>')" />
+                <img
+                  class="detail-button"
+                  src="/images/detail.png"
+                  alt="더보기"
+                  data-toggle="tooltip"
+                  title="detail"
+                  onclick="detail('<%= data.account_book_id %>')"
+                />
+                <img
+                  class="update-button"
+                  src="/images/update.png"
+                  alt="수정"
+                  data-toggle="tooltip"
+                  title="update"
+                  onclick="update('<%= data.account_book_id %>')"
+                />
+                <img
+                  class="delete-button"
+                  src="/images/delete.png"
+                  alt="삭제"
+                  data-toggle="tooltip"
+                  title="delete"
+                  onclick="remove('<%= data.account_book_id %>')"
+                />
                 <div class="contents-item-purpose"><%= data.purpose %></div>
                 <% if (data.type == "수입") { %>
                 <div class="contents-item-money"><span class="income"><%= data.type %> <%= data.amount %></span> 원</div>
