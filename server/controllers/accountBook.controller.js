@@ -62,8 +62,6 @@ class AccountBookController {
 
   // 가계부 수정
   static updateAccoutBook = async function (req, res) {
-    
-    
     const { account_book_id, type, amount, purpose, payment, memo} = req.body;
     console.log(req.body);
 
