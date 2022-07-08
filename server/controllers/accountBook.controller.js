@@ -8,7 +8,7 @@ class AccountBookController {
 
   // 가계부 생성 동작
   static createAccoutBook = async function (req, res) {
-    const member_id = "sylee199877@gmail.com";
+    const member_id = req.user.id;
     const { type, amount, purpose, payment, memo } = req.body;
     try {
       await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
@@ -60,7 +60,7 @@ class AccountBookController {
 
   // 가계부 목록 조회
   static getAccountBookList = async function (req, res) {
-    const member_id = "sylee199877@gmail.com";
+    const member_id = req.user.id;
     try {
       const [result] = await AccountBookService.accountBookList(member_id);
       const [result2] = await AccountBookService.getBalance(member_id);
@@ -82,7 +82,7 @@ class AccountBookController {
 
   // 삭제된 가계부 목록 조회
   static getAccountBookDeletedList = async function (req, res) {
-    const member_id = "sylee199877@gmail.com";
+    const member_id = req.user.id;
     try {
       const [result] = await AccountBookService.accountBookDeletedList(member_id);
       res.render("deletedList.ejs", {
