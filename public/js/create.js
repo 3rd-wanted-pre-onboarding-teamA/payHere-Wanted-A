@@ -32,13 +32,3 @@ async function createAccoutBook() {
         throw err;
     }
 }
-
-// async function createAccoutBook(id) {
-//     try {
-//         const receiveData = await fetch(`/accountBook/createAction?id=${id}`);
-//         const data = await receiveData.json();
-//         console.log(data);
-//     } catch (err) {
-//         throw err;
-//     }
-// }

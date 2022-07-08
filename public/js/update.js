@@ -1,7 +1,5 @@
 function update() {
-    // console.log(11111111);
-    
-    updateAccoutBook()
+    updateAccountBook()
         .then(result => {
             console.log("되냐????", result);
             alert(result.message);
@@ -9,14 +7,12 @@ function update() {
     location.href = "/accountBook/list";
 }
 
-async function updateAccoutBook() {
-    // console.log(22222222);
+async function updateAccountBook() {
     try {
-        // console.log(3333333333);
         const data = {
             account_book_id: document.getElementById("account_book_id").value,
             type: "지출",
-            amount: document.getElementById("payment").value,
+            amount: document.getElementById("amount").value,
             purpose: document.getElementById("purpose").value,
             payment: "현금",
             memo: document.getElementById("memo").value,
@@ -24,17 +20,16 @@ async function updateAccoutBook() {
         console.log(data);
 
         const opt = {
-            method: "GET",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
         };
 
-        const update = await fetch("/accoutBook/updateAction", opt);
-        console.log(update);
+        const update = await fetch("/accountBook/updateAction", opt);
         const result = await update.json();
-        console.log(result);
+        
         return result;
     } catch (err) {
         throw err;
