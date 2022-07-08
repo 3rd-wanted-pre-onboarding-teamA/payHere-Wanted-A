@@ -3,10 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const AuthService = require("../services/auth.service");
-const {
-  generateAccessToken,
-  generateRefreshToken,
-} = require("../util/generateToken");
+const { generateAccessToken, generateRefreshToken } = require("../util/generateToken");
 
 dotenv.config();
 
@@ -25,13 +22,10 @@ class AuthController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: errors.errors.map((obj) => obj.msg) }); // 위 사항을 어겼을 시 400 반환
+        return res.status(400).json({ message: errors.errors.map((obj) => obj.msg) }); // 위 사항을 어겼을 시 400 반환
       }
 
-      const { member_id, member_pw, member_name, phone_number, balance } =
-        req.body;
+      const { member_id, member_pw, member_name, phone_number, balance } = req.body;
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(member_pw, salt); // 패스워드 암호화
 
@@ -40,12 +34,7 @@ class AuthController {
         return res.render("error.ejs", { status: 500, message: "서버 에러입니다." });
       } else {
         // member 테이블에 유저 정보 저장
-        AuthService.join(
-          member_id,
-          hashedPassword,
-          member_name,
-          phone_number
-        );
+        AuthService.join(member_id, hashedPassword, member_name, phone_number);
 
         // have_money 테이블에 잔액 정보 저장
         AuthService.insertBalance(member_id, balance);
@@ -65,9 +54,7 @@ class AuthController {
     try {
       const errors = validationResult(req); // 이메일 형식이 아니라면 에러
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: errors.errors.map((obj) => obj.msg) });
+        return res.status(400).json({ message: errors.errors.map((obj) => obj.msg) });
       }
 
       const { member_id } = req.body;
@@ -102,9 +89,7 @@ class AuthController {
     try {
       const errors = validationResult(req); // 이메일 형식이 아니라면 에러
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: errors.errors.map((obj) => obj.msg) });
+        return res.status(400).json({ message: errors.errors.map((obj) => obj.msg) });
       }
 
       const { member_id, member_pw } = req.body;
@@ -129,13 +114,13 @@ class AuthController {
       const exToken = await AuthService.searchRefreshToken(member_id);
       if (!exToken[0]) {
         const refreshToken = generateRefreshToken(user[0].member_id);
-        await AuthService.saveRefreshToken(member_id, refreshToken);   // 리프레시 토큰 DB에 저장
+        await AuthService.saveRefreshToken(member_id, refreshToken); // 리프레시 토큰 DB에 저장
       }
 
       res.setHeader("Authorization", "Bearer" + accessToken);
       res.cookie("access-token", accessToken);
       res.status(200).json({
-        message: "로그인이 되었습니다."
+        message: "로그인이 되었습니다.",
       });
     } catch (err) {
       throw err;
@@ -149,7 +134,7 @@ class AuthController {
       if (!userId) return res.status(401);
       const [result] = await AuthService.mypage(userId);
       res.status(200).render("mypage.ejs", {
-        myInfo: result
+        myInfo: result,
       });
     } catch (err) {
       throw err;
@@ -163,18 +148,18 @@ class AuthController {
 
     // access 토큰 디코딩하여 user 정보 조회
     const decoded = jwt.decode(authToken);
-    
+
     // 디코딩 결과가 없으면 권한 없음 응답
     if (decoded === null) {
       return res.status(401).send({
-        message: "No authorized!"
+        message: "No authorized!",
       });
     }
-    
+
     // 디코딩된 값에서 유저 id 가져와 리프레시 토큰 검증
     const refreshToken = await AuthService.searchRefreshToken(decoded.id);
     if (!refreshToken) return res.sendStatus(401);
-    
+
     jwt.verify(refreshToken[0].refresh_token, process.env.JWT_REFRESH_TOKEN, (error, user) => {
       if (error) return res.sendStatus(403);
       const accessToken = generateAccessToken(user.id);
@@ -187,14 +172,11 @@ class AuthController {
     const userId = req.user.id;
     try {
       await AuthService.logout(userId);
-      res.clearCookie("access-token");
-      return res.status(204).json({
-        message: "로그아웃 되었습니다."
-      });
+      return res.clearCookie("access-token").status(200).json({ message: "로그아웃 되었습니다." });
     } catch (err) {
       throw err;
     }
-  }
+  };
 }
 
 module.exports = AuthController;
