@@ -1,16 +1,17 @@
 const { verify } = require('jsonwebtoken');
 const pool = require("../db/config");
+const authenticateAccessToken = require('../util/validateJwt');
 
 class AccountBookService {
 
-  static async getById(id) {
-    const SELECT_JOIN = 
-    'SELECT ac.account_book_id, ac.member_id, ac.type, ac.amount, ac.state, ac.memo, m.member_name FROM account_book as ac JOIN member as m ON ac.member_id=m.member_id';
+  // static async getById(id) {
+  //   const SELECT_JOIN = 
+  //   'SELECT ac.account_book_id, ac.member_id, ac.type, ac.amount, ac.state, ac.memo, m.member_name FROM account_book as ac JOIN member as m ON ac.member_id=m.member_id';
 
-    return pool
-        .execute(`${SELECT_JOIN} WHERE ac.account_book_id=?`, [id])
-        .then(result => result[0][0]);
-  }
+  //   return pool
+  //       .execute(`${SELECT_JOIN} WHERE ac.account_book_id=?`, [id])
+  //       .then(result => result[0][0]);
+  // }
 
   static async getUserWithToken(req, res) {
     let authHeader = req.headers['authorization'];
@@ -24,6 +25,7 @@ class AccountBookService {
 
     const user = verify(token, process.env.JWT_ACCESS_TOKEN);
     req.member_id = user.id;
+    authenticateAccessToken(req, res, next)
 
     const userInfo = await AccountBookService.getByMemberId(req.member_id);
 
@@ -47,6 +49,19 @@ class AccountBookService {
     }
   }
 
+  static async viewForCreatedAccountBook(account_book_id) {
+    const sql = `SELECT * FROM account_book WHERE account_book_id='${account_book_id}'`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      return await connection.query(sql)
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
+  }
+
   static async create(member_id, type, amount, purpose, payment, memo) {
     const sql = `INSERT INTO account_book (member_id, type, amount, purpose, payment, memo) VALUES ?`;
     const values = [
@@ -55,7 +70,7 @@ class AccountBookService {
     let connection = null;
     try {
       connection = await pool.getConnection(async (conn) => conn);
-      return await connection.query(sql, [values]);
+      await connection.query(sql, [values]);
     } catch (err) {
       throw err;
     } finally {
@@ -65,6 +80,7 @@ class AccountBookService {
 
   static async modify(type, amount, purpose, payment, memo ,id) {
     const sql = `UPDATE account_book SET type=?, amount=?, purpose=?, payment=?, memo=? WHERE account_book_id=?`;
+    const date = Date.parse(new Date());
     const values = [type, amount, purpose, payment, memo, id];
     let connection = null;
 
