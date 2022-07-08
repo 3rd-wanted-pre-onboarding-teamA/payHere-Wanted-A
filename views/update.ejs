@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/update.css">
+    <script src="/js/update.js"></script>
+    <title>가계부 수정하기</title>
+</head>
+<body>
+    <form action="/updateAction" method="put">
+        <div class="wrap">
+            <div class="contents-main">
+                <div class="contents-container">
+                    <div class="contents-header">
+                        <div class="contents-create">가계부 수정</div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="contents-item">
+                        <div><span class="contents-type">날짜</span>
+                            <%= detail.reg_date %>
+                        </div>
+                        <div><span class="contents-type">결제</span>
+                            <input type="text" id="payment" value="<%= detail.payment%>">
+                        </div>
+                        <div><span class="contents-type">내역</span>
+                            <input type="text" name="purpose" id="purpose" value="<%= detail.purpose%>">
+                        </div>
+                        <div><span class="contents-type">분류
+                            <input type="text" id="type" value="<%= detail.type%>">
+                        </span></div>
+                        <div><span class="contents-type">금액
+                            <input type="text" id="amount" value="<%= detail.amount%>">
+                        </span></div>
+                        <div><span class="contents-type">메모
+                            <input type="text" id="memo" value="<%= detail.memo%>">
+                        </span></div>
+                        <div><input type="hidden" id="account_book_id" value="<%= detail.account_book_id%>"></div>
+                        <div><input type="button" onclick="update()" value="수정하기"></div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </form>
+</body>
+</html>
