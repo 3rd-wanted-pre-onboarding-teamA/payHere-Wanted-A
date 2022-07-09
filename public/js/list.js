@@ -33,7 +33,6 @@ async function submitLogout() {
 
 // 수정하기로 이동
 function update(id) {
-  // console.log("aaa");
   location.href = "/accountBook/update?id=" + id;
 }
 
@@ -47,7 +46,7 @@ function remove(id) {
   }
 }
 
-// 복원 기능 수행 함수
+// 삭제하기
 async function removeAccountBook(id) {
   try {
     const receiveData = await fetch(`/accountBook/delete?id=${id}`);
