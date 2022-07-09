@@ -3,7 +3,7 @@ function clickLogin() {
   submitLogin().then(message => {
     alert(message);
     if (message === "로그인이 되었습니다.") {
-      location.href = "/auth/mypage";
+      location.href = "/accountBook/list";
     }
   });
 }

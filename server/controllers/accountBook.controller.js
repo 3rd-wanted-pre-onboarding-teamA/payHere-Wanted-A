@@ -28,7 +28,7 @@ class AccountBookController {
       }
       res.status(200).render("update.ejs", {
         message: "가계부가 수정되었습니다",
-        detail: result[0],
+        accountBook: result[0],
       });
     } catch (err) {
       throw err;

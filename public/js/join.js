@@ -1,4 +1,4 @@
-//아이디 중복 검사 클릭 동작
+// 아이디 중복 검사 클릭 동작
 function clickCheckId() {
   checkIdAction().then((message) => {
     alert(message);
