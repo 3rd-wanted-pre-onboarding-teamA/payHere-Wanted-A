@@ -11,6 +11,6 @@ router.get("/delete", authenticateAccessToken, AccountBookController.deleteAccou
 router.get("/list", authenticateAccessToken, AccountBookController.getAccountBookList);
 router.get("/deletedList", authenticateAccessToken, AccountBookController.getAccountBookDeletedList);
 router.get("/detail", authenticateAccessToken, AccountBookController.getAccountBookDetail);
-router.get("/restore", authenticateAccessToken, AccountBookController.putAccountBookRestore);
+router.put("/restore", authenticateAccessToken, AccountBookController.putAccountBookRestore);
 
 module.exports = router;

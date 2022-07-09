@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <link type="text/css" rel="stylesheet" href="/css/update.css">
+    <link type="text/css" rel="stylesheet" href="/css/update.css" />
     <script src="/js/update.js"></script>
     <title>가계부 수정하기</title>
   </head>
@@ -13,19 +13,49 @@
             <div class="contents-update">가계부 수정</div>
           </div>
           <div class="line"></div>
-          <div class="date">작성 날짜: <%= detail.reg_date %></div>
+          <div class="date">작성 날짜: <%= accountBook.reg_date %></div>
           <div class="contents-align">
-            <div>결제</div>
-            <input type="text" id="payment" value="<%= detail.payment%>">
+            <label>분류</label>
+            <% if (accountBook.type == '수입') { %>
+            <span class="radio-group">
+              <input type="radio" name="type" id="in" value="수입" checked />
+              <label for="수입">수입</label>
+              <input type="radio" name="type" id="out" value="지출" />
+              <label for="지출">지출</label>
+            </span>
+            <% } %>
+            <% if (accountBook.type == '지출') { %>
+              <span class="radio-group">
+                <input type="radio" name="type" id="in" value="수입" />
+                <label for="수입">수입</label>
+                <input type="radio" name="type" id="out" value="지출" checked />
+                <label for="지출">지출</label>
+              </span>
+            <% } %>
             <div>내역</div>
-            <input type="text" name="purpose" id="purpose" value="<%= detail.purpose%>">
-            <div>분류</div>
-            <input type="text" id="type" value="<%= detail.type%>">
+            <input type="text" name="purpose" id="purpose" value="<%= accountBook.purpose %>" />
             <div>금액</div>
-            <input type="number" id="amount" value="<%= detail.amount%>">
+            <input type="number" id="amount" value="<%= accountBook.amount %>" />
+            <label>결제</label>
+            <% if (accountBook.payment == '카드') { %>
+              <span class="radio-group">
+                <input type="radio" name="payment" id="card" value="카드" class="payment" checked />
+                <label for="카드">카드</label>
+                <input type="radio" name="payment" id="bill" value="현금" class="payment" />
+                <label for="현금">현금</label>
+              </span>
+            <% } %>
+            <% if (accountBook.payment == '현금') { %>
+              <span class="radio-group">
+                <input type="radio" name="payment" id="card" value="카드" class="payment" />
+                <label for="카드">카드</label>
+                <input type="radio" name="payment" id="bill" value="현금" class="payment" checked />
+                <label for="현금">현금</label>
+              </span>
+            <% } %>
             <div>메모</div>
-            <input type="text" id="memo" value="<%= detail.memo%>">
-            <input type="hidden" id="account_book_id" value="<%= detail.account_book_id%>">
+            <input type="text" id="memo" value="<%= accountBook.memo %>" />
+            <input type="hidden" id="account_book_id" value="<%= accountBook.account_book_id %>" />
             <button onclick="update()">수정하기</button>
           </div>
         </div>
