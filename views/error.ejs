@@ -8,15 +8,19 @@
         text-align: center;
       }
       .error-message {
-        position: relative;
-        top: 200px;
-        font-size: 80pt;
+        margin-top: 80px;
+        font-size: 50pt;
         font-weight: bold;
-        margin-top: 30px;
+      }
+      .error-detail-message {
+        font-size: 20pt;
+        font-weight: bold;
+        margin-top: 20px;
       }
     </style>
   </head>
   <body>
     <p class="error-message"><%= status %> <%= message %></p>
+    <p class="error-detail-message"><%= detail %></p>
   </body>
 </html>

@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const logger = require("morgan");
 const index = require("./server/routes/index");
+const error = require("./server/db/error")
 
 class App {
   constructor() {
@@ -36,11 +37,11 @@ class App {
 
   errorHandler() {
     this.app.use((req, res, _) => {
-      res.status(400).render("error.ejs", { status: 404, message: "잘못된 접근입니다." });
+      res.status(400).render("error.ejs", error.NOT_FOUND );
     });
 
     this.app.use((req, res, _) => {
-      res.status(500).render("error.ejs", { status: 500, message: "서버에러입니다." });
+      res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     });
   }
 }
