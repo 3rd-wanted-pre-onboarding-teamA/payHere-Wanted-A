@@ -74,6 +74,7 @@ class AccountBookService {
     }
   }
 
+  // 삭제된 목록
   static async accountBookDeletedList(member_id) {
     const sql = `select * from account_book where member_id = '${member_id}' and state = 1 order by reg_date desc;`;
     let connection = null;

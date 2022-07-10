@@ -1,4 +1,5 @@
 const AccountBookService = require("../services/accountBook.service");
+const error = require("../db/error");
 
 class AccountBookController {
   // 가계부 등록 form
@@ -12,7 +13,7 @@ class AccountBookController {
     const { type, amount, purpose, payment, memo } = req.body;
     try {
       await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
-      res.status(201).json({ message: "가계부가 등록됐습니다." });
+      res.status(201).json({ message: "가계부가 등록되었습니다." });
     } catch (err) {
       throw err;
     }
@@ -21,11 +22,11 @@ class AccountBookController {
   // 가계부 수정 form
   static update = async function (req, res) {
     const id = req.query.id;
+    if (id == undefined) {
+      return res.status(404).render("error.ejs", error.NOT_FOUND);
+    }
     try {
       const [result] = await AccountBookService.accountBookDetail(id);
-      if (result[0].memo == null) {
-        result[0].memo = "없음";
-      }
       res.status(200).render("update.ejs", {
         message: "가계부가 수정되었습니다",
         accountBook: result[0],
@@ -49,10 +50,12 @@ class AccountBookController {
   // 가계부 삭제
   static deleteAccoutBook = async function (req, res) {
     const id = req.query.id;
-
+    if (id == undefined) {
+      return res.status(404).render("error.ejs", error.NOT_FOUND);
+    }
     try {
       await AccountBookService.remove(id);
-      res.status(200).json({ message: "가계부 삭제 성공!" });
+      res.status(200).json({ message: "삭제되었습니다." });
     } catch (err) {
       throw err;
     }
@@ -85,12 +88,12 @@ class AccountBookController {
     const member_id = req.user.id;
     try {
       const [result] = await AccountBookService.accountBookDeletedList(member_id);
-      res.render("deletedList.ejs", {
+      res.status(200).render("deletedList.ejs", {
         message: "삭제된 가계부 리스트가 조회되었습니다.",
         deletedList: result,
       });
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 
@@ -98,7 +101,7 @@ class AccountBookController {
   static getAccountBookDetail = async function (req, res) {
     const id = req.query.id;
     if (id == undefined) {
-      return res.render("error.ejs", { status: 404, message: "잘못된 경로입니다." });
+      return res.status(404).render("error.ejs", error.NOT_FOUND);
     }
     try {
       const [result] = await AccountBookService.accountBookDetail(id);
@@ -118,7 +121,7 @@ class AccountBookController {
   static putAccountBookRestore = async function (req, res) {
     const id = req.query.id;
     if (id == undefined) {
-      return res.render("error.ejs", { status: 404, message: "잘못된 경로입니다." });
+      return res.status(404).render("error.ejs", error.NOT_FOUND);
     }
     try {
       await AccountBookService.accountBookRestore(id);
