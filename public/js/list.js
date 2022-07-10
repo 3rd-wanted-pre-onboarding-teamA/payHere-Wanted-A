@@ -11,11 +11,12 @@ function toMypage(id) {
   location.href = "/auth/mypage";
 }
 
+// 로그아웃
 function logout() {
   submitLogout().then((message) => {
     alert(message);
     if (message === "로그아웃 되었습니다.") {
-      location.href = "/auth/login";
+      location.href = "/";
     }
   });
 }
