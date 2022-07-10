@@ -14,7 +14,7 @@
 
   |황선영|이승연|허정연|장덕수|
   |:------:|:------:|:------:|:------:|
-  |[Github](https://github.com/SMin1620) | [Github](https://github.com/dltmddus1998) | [Github](https://github.com/golgol22) | [Github](https://github.com/dapsu) |
+  |[Github](https://github.com/syoungee) | [Github](https://github.com/dltmddus1998) | [Github](https://github.com/golgol22) | [Github](https://github.com/dapsu) |
 
 </div> 
 <br/>
