@@ -14,7 +14,7 @@
 
   |황선영|이승연|허정연|장덕수|
   |:------:|:------:|:------:|:------:|
-  |[Github](https://github.com/SMin1620) | [Github](https://github.com/dltmddus1998) | [Github](https://github.com/golgol22) | [Github](https://github.com/dapsu) |
+  |[Github](https://github.com/syoungee) | [Github](https://github.com/dltmddus1998) | [Github](https://github.com/golgol22) | [Github](https://github.com/dapsu) |
 
 </div> 
 <br/>
@@ -89,6 +89,8 @@ Jest로 테스트 코드 구현
 
 ## RestAPI
 ~~이후 swagger로 보여줄 예정~~
+
+
   |  | METHOD | URL | 
 | --- | --- | --- | 
 | 회원가입 | GET | /auth/signup |
@@ -108,3 +110,4 @@ Jest로 테스트 코드 구현
 | 삭제 가계부 복원 | PUT | /accountBook/restore?id=1 |
 | 가계부 리스트 | GET | /accountBook/list |
 | 가계부 상세 내역 | GET | /accountBook/detail?id=1 |
+

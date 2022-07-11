@@ -28,7 +28,7 @@ class AccountBookController {
     try {
       const [result] = await AccountBookService.accountBookDetail(id);
       res.status(200).render("update.ejs", {
-        message: "가계부가 수정되었습니다",
+        message: "수정할 가계부 데이터를 조회했습니다.",
         accountBook: result[0],
       });
     } catch (err) {
