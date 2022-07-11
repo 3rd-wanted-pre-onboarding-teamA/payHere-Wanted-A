@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const logger = require("morgan");
 const index = require("./server/routes/index");
+const error = require("./server/db/error")
 
 class App {
   constructor() {
@@ -11,7 +12,7 @@ class App {
     this.setMiddleWare();
     this.setStatic();
     this.getRouting();
-    // this.errorHandler();
+    this.errorHandler();
   }
 
   setMiddleWare() {
@@ -34,16 +35,15 @@ class App {
     this.app.use("/", index);
   }
 
-  // TODO: 에러 핸들링, 공통 에러 화면 필요
-  // errorHandler() { 
-  //   this.app.use((req, res, _) => {
-  //     res.status(404).render("404.ejs");
-  //   });
+  errorHandler() {
+    this.app.use((req, res, _) => {
+      res.status(400).render("error.ejs", error.NOT_FOUND );
+    });
 
-  //   this.app.use((err, req, res, _) => {
-  //     res.status(500).render("500.ejs");
-  //   });
-  // }
+    this.app.use((req, res, _) => {
+      res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
+    });
+  }
 }
 
 module.exports = new App().app;

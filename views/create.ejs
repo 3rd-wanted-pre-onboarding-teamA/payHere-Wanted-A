@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="ko">
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/create.css">
+    <script src="/js/create.js"></script>
+    <title>가계부 등록하기</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="contents-main">
+        <div class="contents-container">
+          <div class="contents-header">
+            <div class="contents-create">가계부 등록</div>
+          </div>
+          <div class="line"></div>
+          <div class="contents-align">
+            <label>분류</label>
+            <span class="radio-group">
+              <input type="radio" name="type" id="in" value="수입" checked>
+              <label for="수입">수입</label>
+              <input type="radio" name="type" id="out" value="지출">
+              <label for="지출">지출</label>
+            </span>
+            <div class="contents-item-purpose">내역</div>
+            <input type="text" name="purpose" id="purpose">
+            <div>금액</div>
+            <input type="number" name="amount" id="amount">
+            <label>결제 수단</label>
+            <span class="radio-group">
+              <input type="radio" name="payment" id="card" value="카드" class="payment" checked>
+              <label for="카드">카드</label>
+              <input type="radio" name="payment" id="bill" value="현금" class="payment">
+              <label for="현금">현금</label>
+            </span>
+            <div>메모</div>
+            <input type="text" name="memo" id="memo">
+            <button onclick="clickCreate()" id="submit">등록하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

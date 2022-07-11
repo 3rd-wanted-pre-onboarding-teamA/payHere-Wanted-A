@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ERROR PAGE</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      .error-message {
+        margin-top: 80px;
+        font-size: 50pt;
+        font-weight: bold;
+      }
+      .error-detail-message {
+        font-size: 20pt;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="error-message"><%= status %> <%= message %></p>
+    <p class="error-detail-message"><%= detail %></p>
+  </body>
+</html>

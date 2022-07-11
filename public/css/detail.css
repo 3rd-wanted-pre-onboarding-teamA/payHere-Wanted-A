@@ -28,7 +28,7 @@
   font-weight: bold;
   line-height: 45px;
   text-align: left;
-  color: #e27160;
+  color: salmon;
   letter-spacing: 2px;
 }
 
@@ -55,15 +55,15 @@
 }
 
 .contents-item > div {
-  font-size: 12pt;
+  font-size: 14pt;
   font-weight: bold;
   line-height: 50px;
 }
 
 .contents-item .contents-type {
-  color: #e27160;
+  color: salmon;
   background: #eee;
-  font-size: 12pt;
+  font-size: 14pt;
   font-weight: bold;
   border: 0;
   border-radius: 5px;

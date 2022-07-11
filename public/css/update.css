@@ -3,7 +3,6 @@
   height: 100%;
   position: relative;
   display: flex;
-  color: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
   flex-flow: column nowrap;
 }
 
@@ -23,7 +22,7 @@
   display: flex;
 }
 
-.contents-main .contents-container .contents-header .contents-mypage {
+.contents-main .contents-container .contents-header .contents-update {
   width: 100%;
   font-size: 35pt;
   font-weight: bold;
@@ -40,15 +39,19 @@
   margin: 30px 0;
 }
 
-.contents-item {
-  position: relative;
-  margin-bottom: 20px;
-  width: 100%;
-  height: 150px;
+.date {
+  text-align: right;
+  font-size: 15pt;
+  font-weight: bold;
 }
 
-.contents-item > div {
-  font-size: 14pt;
+.contents-align {
+  width: 400px;
+  margin: 40px auto;
+}
+
+.contents-align > div, label {
+  font-size: 16pt;
   font-weight: bold;
   line-height: 50px;
 }
@@ -56,18 +59,50 @@
 .contents-item .contents-type {
   color: salmon;
   background: #eee;
-  font-size: 14pt;
+  font-size: 12pt;
   font-weight: bold;
   border: 0;
-  border-radius: 5px;
-  padding: 4px 10px;
 }
 
-.btn {
+input[type=text], input[type=number] {
+  width: 98%;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 13pt;
+  margin-bottom: 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.radio-group {
+  float: right;
+}
+
+input[type=radio], input[type=radio]:checked {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  margin-right: 0.2rem;
+}
+
+input[type=radio] {
+  background-color: white;
+  border: 2px solid #e27160;
+}
+
+input[type=radio]:checked {
+  background: #e27160;
+}
+
+button {
   font-size: 14px;
-  margin: 0 0.5em;
+  width: 100%;
+  margin-top: 30px;
   border-radius: 2em;
-  padding: 0.75em 1.5em;
+  padding: 1em 1.8em;
   cursor: pointer;
   background: none;
   border: 1px solid;
@@ -77,8 +112,8 @@
   transition: 250ms ease-out;
 }
 
-.btn:hover,
-.btn:focus {
+button:hover,
+button:focus {
   color: #fff;
   background: salmon;
 }

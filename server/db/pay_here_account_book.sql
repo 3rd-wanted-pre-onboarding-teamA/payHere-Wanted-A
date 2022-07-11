@@ -25,12 +25,14 @@ create table account_book ( -- 가계부
 create table have_money ( -- 잔액
     member_id varchar(50) not null,
     balance int not null,
+    primary key(member_id),
 	constraint have_money_member_fk FOREIGN KEY (member_id)
     REFERENCES member(member_id) ON UPDATE CASCADE
 );
 CREATE TABLE refresh_token ( -- 리프레시 토큰
     member_id VARCHAR(50) NOT NULL,
     refresh_token VARCHAR(250) NOT NULL,
+    primary key(member_id),
     CONSTRAINT refresh_token_member_fk FOREIGN KEY (member_id)
     REFERENCES member(member_id) ON UPDATE CASCADE
 );

@@ -4,7 +4,7 @@ const pool = require("../db/config");
  * @code writer 장덕수
  * @description 사용자 인증 시 사용되는 sql구문 클래스로 정의
  *
- * @auth.signUp 회원가입 메소드
+ * @auth.join 회원가입 메소드
  * @auth.checkId 아이디 중복 확인 메소드
  * @auth.checkUser 로그인 시 유저 정보 조회 메소드
  *
@@ -12,7 +12,7 @@ const pool = require("../db/config");
  */
 class AuthService {
   // 회원가입 메소드
-  static async signUp(member_id, member_pw, member_name, phone_number) {
+  static async join(member_id, member_pw, member_name, phone_number) {
     const sql = `INSERT INTO member (member_id, member_pw, member_name, phone_number) VALUES ('${member_id}', '${member_pw}', '${member_name}', '${phone_number}');`;
     let connection = null;
     try {
@@ -71,6 +71,36 @@ class AuthService {
     }
   }
 
+  // resfresh토큰 조회
+  static async searchRefreshToken(member_id) {
+    const sql = `SELECT refresh_token FROM refresh_token WHERE member_id = '${member_id}'`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      const [result] = await connection.query(sql);
+      return result;
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
+  }
+
+  // 로그인 시 refresh토큰 DB 저장
+  static async saveRefreshToken(member_id, token) {
+    const sql = `INSERT INTO refresh_token (member_id, refresh_token) VALUES ('${member_id}', '${token}');`;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      const [result] = await connection.query(sql);
+      return result;
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
+  }
+
   // mypage 정보 조회 메소드
   static async mypage(member_id) {
     const sql = `
@@ -79,6 +109,21 @@ class AuthService {
       JOIN have_money ON member.member_id = have_money.member_id
       WHERE member.member_id = '${member_id}';
     `;
+    let connection = null;
+    try {
+      connection = await pool.getConnection(async (conn) => conn);
+      const [result] = await connection.query(sql);
+      return result;
+    } catch (err) {
+      throw err;
+    } finally {
+      connection.release();
+    }
+  }
+
+  // 로그아웃 시 리프레시 토큰 데이터 삭제
+  static async logout(member_id) {
+    const sql = `DELETE FROM refresh_token WHERE member_id = '${member_id}';`;
     let connection = null;
     try {
       connection = await pool.getConnection(async (conn) => conn);

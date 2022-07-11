@@ -11,7 +11,13 @@ function restore(id) {
 // 복원 기능 수행 함수
 async function restoreAccountBook(id) {
   try {
-    const receiveData = await fetch(`/accountBook/restore?id=${id}`);
+    const opt = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    };
+    const receiveData = await fetch(`/accountBook/restore?id=${id}`, opt);
     const data = await receiveData.json();
     return data.message;
   } catch (err) {

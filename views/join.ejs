@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/join.css" />
+    <script src="/js/join.js"> </script>
+    <title>회원가입</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="contents-main">
+        <div class="contents-container">
+          <div class="contents-header">
+            <div class="contents-join">회원가입</div>
+          </div>
+          <div class="line"></div>
+          <div class="contents-align">
+            <div class="input-email">이메일</div>
+            <input type="email" id="member_id" placeholder="이메일을 적어주세요 (예시: goodnight@gmail.com)">
+            <button class="id-check-button" onclick="clickCheckId()">중복 체크</button><br><br>
+            <div class="input-pw">비밀번호</div>
+            <input type="password" id="member_pw" placeholder="비밀번호를 적어주세요 (6글자 이상)"><br><br>
+            <div class="input-name">이름</div>
+            <input type="text" id="member_name" placeholder="이름을 적어주세요 (10글자 미만)"><br><br>
+            <div class="input-phone-number">핸드폰 번호</div>
+            <input type="text" id="phone_number" placeholder="핸드폰 번호를 적어주세요 (예시: 010-1234-1234)"><br><br>
+            <div class="input-balance">잔액</div>
+            <input type="number" id="balance" placeholder="잔액을 적어주세요 (예시: 50000)"><br><br>
+            <button class="join-button" onclick="clickJoin()">회원가입하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
