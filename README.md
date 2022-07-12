@@ -73,8 +73,39 @@ AWS EC2, RDS를 활용해 배포하였으나 과금으로 인해 인스턴스 �
 
 Jest로 테스트 코드 구현 example
 
-<div class="colorscripter-code" style="color:#FEFEFE;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#300546;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #4f4f4f"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#aaa;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div><div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div><div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div><div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div><div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div><div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div><div style="line-height:130%">29</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#FEFEFE;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%">describe(<span style="color:#20EC0D">"create&nbsp;account&nbsp;book"</span>,&nbsp;()&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span><span style="color:#FF3399"></span><span style="color:#F17CE3">&gt;</span>&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#F17CE3">let</span>&nbsp;type,&nbsp;amount,&nbsp;purpose,&nbsp;payment,&nbsp;memo,&nbsp;request,&nbsp;response;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;beforeEach(()&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span><span style="color:#FF3399"></span><span style="color:#F17CE3">&gt;</span>&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span>&nbsp;<span style="color:#20EC0D">"지출"</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;amount&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span>&nbsp;<span style="color:#CDF103">1000</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;purpose&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span>&nbsp;<span style="color:#20EC0D">"고구마"</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;payment&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span>&nbsp;<span style="color:#20EC0D">"현금"</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;memo&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span>&nbsp;<span style="color:#20EC0D">"없음"</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;request&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span>&nbsp;httpMocks.createRequest({</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user:&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;<span style="color:#CDF103">1</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body:&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;type,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount:&nbsp;amount,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purpose:&nbsp;purpose,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;payment:&nbsp;payment,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;memo:&nbsp;memo,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;});</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;response&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span>&nbsp;httpMocks.createResponse();</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;});</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;it(<span style="color:#20EC0D">"create&nbsp;account&nbsp;book"</span>,&nbsp;async&nbsp;()&nbsp;<span style="color:#FF3399"></span><span style="color:#F17CE3">=</span><span style="color:#FF3399"></span><span style="color:#F17CE3">&gt;</span>&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;await&nbsp;AccountBookController.createAccoutBook(request,&nbsp;response);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;expect(response.statusCode).toBe(<span style="color:#CDF103">201</span>);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;});</div><div style="padding:0 6px; white-space:pre; line-height:130%">});</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div></div><div style="text-align:right;margin-top:-13px;margin-right:5px;font-size:9px;font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color:#4f4f4ftext-decoration:none">Colored by Color Scripter</a></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#4f4f4f;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
 
+``` javascript
+describe("create account book", () => {
+  let type, amount, purpose, payment, memo, request, response;
+  beforeEach(() => {
+    type = "지출";
+    amount = 1000;
+    purpose = "고구마";
+    payment = "현금";
+    memo = "없음";
+    request = httpMocks.createRequest({
+      user: {
+        id: 1
+      },
+      body: {
+        type: type,
+        amount: amount,
+        purpose: purpose,
+        payment: payment,
+        memo: memo,
+      },
+    });
+    response = httpMocks.createResponse();
+  });
+ 
+  it("create account book", async () => {
+    await AccountBookController.createAccoutBook(request, response);
+    expect(response.statusCode).toBe(201);
+  });
+});
+ 
+
+```
 
 ## RestAPI
 <span style="background-color: #dcffe4">[more descriptions(click here!)](https://misty-lungfish-f16.notion.site/pay_here-nodejs-CRUD-a3b0bf3fc4a14fcdac9fbf760107373e)</span>
