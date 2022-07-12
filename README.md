@@ -97,7 +97,7 @@ describe("create account book", () => {
     memo = "없음";
     request = httpMocks.createRequest({
       user: {
-        id: 1
+        id: "qwer1234@naver.com"
       },
       body: {
         type: type,
