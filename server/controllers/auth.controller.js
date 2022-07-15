@@ -4,12 +4,14 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const AuthService = require("../services/auth.service");
 const { generateAccessToken, generateRefreshToken } = require("../util/generateToken");
-
 dotenv.config();
 
 class AuthController {
-  // 회원가입 브라우저 화면
   static join = async function (req, res) {
+    /** 
+     * 기능: 회원가입 브라우저 화면
+     * 작성자: 장덕수
+     */
     try {
       res.status(200).render("join.ejs");
     } catch (err) {
@@ -17,8 +19,11 @@ class AuthController {
     }
   };
 
-  // 회원가입
   static joinAction = async function (req, res) {
+    /** 
+     * 기능: 회원가입 기능
+     * 작성자: 장덕수
+     */
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -49,8 +54,11 @@ class AuthController {
     }
   };
 
-  // 회원가입 시 아이디 중복검사
   static checkId = async function (req, res) {
+    /** 
+     * 기능: 회원가입 시 아이디 중복검사
+     * 작성자: 장덕수
+     */
     try {
       const errors = validationResult(req); // 이메일 형식이 아니라면 에러
       if (!errors.isEmpty()) {
@@ -75,8 +83,11 @@ class AuthController {
     }
   };
 
-  // 로그인 브라우저 화면
-  static login = async function (req, res) {
+  static login = async function (req, res) {    
+    /** 
+    * 기능: 로그인 브라우저 화면
+    * 작성자: 장덕수
+    */
     try {
       res.status(200).render("login.ejs");
     } catch (err) {
@@ -84,8 +95,11 @@ class AuthController {
     }
   };
 
-  // 로그인
   static loginAction = async function (req, res) {
+    /** 
+     * 기능: 로그인
+     * 작성자: 장덕수
+     */
     try {
       const errors = validationResult(req); // 이메일 형식이 아니라면 에러
       if (!errors.isEmpty()) {
@@ -127,8 +141,11 @@ class AuthController {
     }
   };
 
-  // mypage 조회
   static mypage = async function (req, res) {
+    /** 
+     * 기능: mypage 조회
+     * 작성자: 장덕수
+     */
     const userId = req.user.id;
     try {
       if (!userId) return res.status(401);
@@ -141,8 +158,11 @@ class AuthController {
     }
   };
 
-  // access토큰 만료 시 재발급
   static refresh = async function (req, res) {
+    /** 
+     * 기능: access토큰 만료 시 재발급
+     * 작성자: 장덕수
+     */
     const authHeader = req.headers["cookie"];
     const token = authHeader.replace("access-token=", "");
 
@@ -171,8 +191,11 @@ class AuthController {
     });
   };
 
-  // 로그아웃 시 리프레시 토큰 삭제
   static logout = async function (req, res) {
+    /** 
+     * 기능: 로그아웃 시 리프레시 토큰 삭제
+     * 작성자: 장덕수
+     */
     const userId = req.user.id;
     try {
       await AuthService.logout(userId);

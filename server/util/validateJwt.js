@@ -2,16 +2,13 @@ const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const AuthService = require("../services/auth.service");
 const { generateAccessToken } = require("../util/generateToken");
-
 dotenv.config();
 
-/**
- * @code writer 장덕수
- * @description access 토큰을 기반으로 사용자 인증 유효성 검사하는 메소드
- *
- * @returns res.user (토큰으로 확인한 유저의 정보)
- */
 const authenticateAccessToken = (req, res, next) => {
+  /** 
+   * 기능: access 토큰을 기반으로 사용자 인증 유효성 검사하는 메소드
+   * 작성자: 장덕수
+   */
   const authHeader = req.headers["cookie"];
   if (authHeader === undefined) {
     res.status(403).send("로그인이 필요합니다.");

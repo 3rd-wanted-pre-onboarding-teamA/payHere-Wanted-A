@@ -3,9 +3,13 @@ const cors = require("cors");
 const path = require("path");
 const logger = require("morgan");
 const index = require("./server/routes/index");
-const error = require("./server/db/error")
+const error = require("./server/db/error");
 
 class App {
+  /** 
+   * 기능: 서버 실행
+   * 작성자: 허정연
+   */
   constructor() {
     this.app = express();
     this.setViewEngine();

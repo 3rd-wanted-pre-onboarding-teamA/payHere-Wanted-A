@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const AccountBookController = require("../controllers/accountBook.controller")
+const AccountBookController = require("../controllers/accountBook.controller");
 const authenticateAccessToken = require("../util/validateJwt");
 
 router.get("/create", authenticateAccessToken, AccountBookController.create);
