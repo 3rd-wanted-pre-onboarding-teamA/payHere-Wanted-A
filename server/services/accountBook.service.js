@@ -2,9 +2,9 @@ const pool = require("../db/config");
 
 class AccountBookService {
   // 가계부 생성
-  static async create(member_id, type, amount, purpose, payment, memo) {
-    const sql = `INSERT INTO account_book (member_id, type, amount, purpose, payment, memo) VALUES ?`;
-    const values = [[member_id, type, amount, purpose, payment, memo]];
+  static async create(member_id, type, amount, purpose, payment, memo, use_date) {
+    const sql = `INSERT INTO account_book (member_id, type, amount, purpose, payment, memo, use_date) VALUES ?`;
+    const values = [[member_id, type, amount, purpose, payment, memo, use_date]];
     let connection = null;
     try {
       connection = await pool.getConnection(async (conn) => conn);
@@ -17,11 +17,10 @@ class AccountBookService {
   }
 
   // 가계부 수정 
-  static async modify(type, amount, purpose, payment, memo, id) {
-    const sql = `UPDATE account_book SET type=?, amount=?, purpose=?, payment=?, memo=? WHERE account_book_id=?`;
-    const values = [type, amount, purpose, payment, memo, id];
+  static async modify(type, amount, purpose, payment, memo, use_date, id) {
+    const sql = `UPDATE account_book SET type=?, amount=?, purpose=?, payment=?, memo=?, use_date=? WHERE account_book_id=?`;
+    const values = [type, amount, purpose, payment, memo, use_date, id];
     let connection = null;
-
     try {
       connection = await pool.getConnection(async (conn) => conn);
       return await connection.query(sql, values);
@@ -48,7 +47,7 @@ class AccountBookService {
 
   // 가계부 목록
   static async accountBookList(member_id) {
-    const sql = `select * from account_book where member_id = '${member_id}' and state = 0 order by reg_date desc;`;
+    const sql = `select * from account_book where member_id = '${member_id}' and state = 0 order by use_date desc;`;
     let connection = null;
     try {
       connection = await pool.getConnection(async (conn) => conn);
@@ -76,7 +75,7 @@ class AccountBookService {
 
   // 삭제된 목록
   static async accountBookDeletedList(member_id) {
-    const sql = `select * from account_book where member_id = '${member_id}' and state = 1 order by reg_date desc;`;
+    const sql = `select * from account_book where member_id = '${member_id}' and state = 1 order by use_date desc;`;
     let connection = null;
     try {
       connection = await pool.getConnection(async (conn) => conn);
