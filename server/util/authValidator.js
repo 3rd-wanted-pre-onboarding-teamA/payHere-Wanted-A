@@ -1,5 +1,9 @@
 const { body } = require("express-validator");
 
+/** 
+ * 기능: 회원가입 형식 확인
+ * 작성자: 장덕수
+ */
 const authValidator = [
   body("member_id")
     .isEmail()
