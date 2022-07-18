@@ -19,7 +19,6 @@ class AccountBookService {
     }
   }
 
-  // 가계부 수정 
   static async modify(type, amount, purpose, payment, memo, id) {
     /** 
      * 기능: 가계부 수정
@@ -28,7 +27,6 @@ class AccountBookService {
     const sql = `UPDATE account_book SET type=?, amount=?, purpose=?, payment=?, memo=? WHERE account_book_id=?`;
     const values = [type, amount, purpose, payment, memo, id];
     let connection = null;
-
     try {
       connection = await pool.getConnection(async (conn) => conn);
       return await connection.query(sql, values);
@@ -73,7 +71,6 @@ class AccountBookService {
     }
   }
 
-  // 잔액조회
   static async getBalance(member_id) {
     /** 
      * 기능: 잔액조회

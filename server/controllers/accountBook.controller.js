@@ -16,9 +16,9 @@ class AccountBookController {
      * 작성자: 이승연
      */
     const member_id = req.user.id;
-    const { type, amount, purpose, payment, memo } = req.body;
+    const { type, amount, purpose, payment, memo, use_date } = req.body;
     try {
-      await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
+      await AccountBookService.create(member_id, type, amount, purpose, payment, memo, use_date);
       res.status(201).json({ message: "가계부가 등록되었습니다." });
     } catch (err) {
       throw err;
@@ -52,7 +52,7 @@ class AccountBookController {
      */
     const { account_book_id, type, amount, purpose, payment, memo } = req.body;
     try {
-      await AccountBookService.modify(type, amount, purpose, payment, memo, account_book_id);
+      await AccountBookService.modify(type, amount, purpose, payment, memo, use_date, account_book_id);
       res.status(200).json({ message: "가계부가 수정되었습니다." });
     } catch (err) {
       throw err;
