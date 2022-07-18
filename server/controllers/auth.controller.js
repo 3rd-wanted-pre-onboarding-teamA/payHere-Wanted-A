@@ -15,7 +15,7 @@ class AuthController {
     try {
       res.status(200).render("join.ejs");
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 
@@ -50,7 +50,7 @@ class AuthController {
         });
       }
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 
@@ -79,7 +79,7 @@ class AuthController {
           success: true,
         });
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 
@@ -91,7 +91,7 @@ class AuthController {
     try {
       res.status(200).render("login.ejs");
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 
@@ -137,7 +137,7 @@ class AuthController {
         message: "로그인이 되었습니다.",
       });
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 
@@ -147,6 +147,9 @@ class AuthController {
      * 작성자: 장덕수
      */
     const userId = req.user.id;
+    if (id == undefined) {
+      return res.status(404).render("error.ejs", error.NOT_FOUND);
+    }
     try {
       if (!userId) return res.status(401);
       const [result] = await AuthService.mypage(userId);
@@ -154,7 +157,7 @@ class AuthController {
         myInfo: result,
       });
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 
@@ -201,7 +204,7 @@ class AuthController {
       await AuthService.logout(userId);
       return res.clearCookie("access-token").status(200).json({ message: "로그아웃 되었습니다." });
     } catch (err) {
-      throw err;
+      return res.status(500).render("error.ejs", error.INTERNAL_SERVER_ERROR);
     }
   };
 }
