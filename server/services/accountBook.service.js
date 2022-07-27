@@ -24,7 +24,7 @@ class AccountBookService {
      * 기능: 가계부 수정
      * 작성자: 이승연
      */
-    const sql = `UPDATE account_book SET type=?, amount=?, purpose=?, payment=?, memo=? use_date=? WHERE account_book_id=?`;
+    const sql = `UPDATE account_book SET type=?, amount=?, purpose=?, payment=?, memo=?, use_date=? WHERE account_book_id=?`;
     const values = [type, amount, purpose, payment, memo, use_date, id];
     let connection = null;
     try {

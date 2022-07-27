@@ -78,5 +78,25 @@ begin
 		have_money.balance = have_money.balance + OLD.amount + NEW.amount
 		where have_money.member_id = NEW.member_id;
 	end; end if;
+	if OLD.state = 0 and OLD.type = '지출' and NEW.state = 1 then begin
+		update have_money set
+		have_money.balance = have_money.balance + OLD.amount
+		where have_money.member_id = NEW.member_id;
+	end; end if;
+	if OLD.state = 0 and OLD.type = '수입' and NEW.state = 1 then begin
+		update have_money set
+		have_money.balance = have_money.balance - OLD.amount
+		where have_money.member_id = NEW.member_id;
+	end; end if;
+		if OLD.state = 1 and OLD.type = '지출' and NEW.state = 0 then begin
+		update have_money set
+		have_money.balance = have_money.balance - OLD.amount
+		where have_money.member_id = NEW.member_id;
+	end; end if;
+	if OLD.state = 1 and OLD.type = '수입' and NEW.state = 0 then begin
+		update have_money set
+		have_money.balance = have_money.balance + OLD.amount
+		where have_money.member_id = NEW.member_id;
+	end; end if;
 END$$
 DELIMITER ;
