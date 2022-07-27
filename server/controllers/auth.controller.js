@@ -147,7 +147,7 @@ class AuthController {
      * 작성자: 장덕수
      */
     const userId = req.user.id;
-    if (id == undefined) {
+    if (userId === undefined) {
       return res.status(404).render("error.ejs", error.NOT_FOUND);
     }
     try {
