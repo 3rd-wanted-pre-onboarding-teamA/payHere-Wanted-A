@@ -2,25 +2,34 @@ const AccountBookService = require("../services/accountBook.service");
 const error = require("../db/error");
 
 class AccountBookController {
-  // 가계부 등록 form
   static create = async function (req, res) {
+    /** 
+     * 기능: 가계부 등록 form
+     * 작성자: 이승연
+     */
     res.status(200).render("create.ejs");
   };
 
-  // 가계부 생성 동작
   static createAccoutBook = async function (req, res) {
+    /** 
+     * 기능: 가계부 생성 동작
+     * 작성자: 이승연
+     */
     const member_id = req.user.id;
-    const { type, amount, purpose, payment, memo } = req.body;
+    const { type, amount, purpose, payment, memo, use_date } = req.body;
     try {
-      await AccountBookService.create(member_id, type, amount, purpose, payment, memo);
+      await AccountBookService.create(member_id, type, amount, purpose, payment, memo, use_date);
       res.status(201).json({ message: "가계부가 등록되었습니다." });
     } catch (err) {
       throw err;
     }
   };
 
-  // 가계부 수정 form
   static update = async function (req, res) {
+    /** 
+     * 기능: 가계부 수정 form
+     * 작성자: 이승연
+     */
     const id = req.query.id;
     if (id == undefined) {
       return res.status(404).render("error.ejs", error.NOT_FOUND);
@@ -36,19 +45,25 @@ class AccountBookController {
     }
   };
 
-  // 가계부 수정
   static updateAccountBook = async function (req, res) {
+    /** 
+     * 기능: 가계부 수정
+     * 작성자: 이승연
+     */
     const { account_book_id, type, amount, purpose, payment, memo } = req.body;
     try {
-      await AccountBookService.modify(type, amount, purpose, payment, memo, account_book_id);
+      await AccountBookService.modify(type, amount, purpose, payment, memo, use_date, account_book_id);
       res.status(200).json({ message: "가계부가 수정되었습니다." });
     } catch (err) {
       throw err;
     }
   };
 
-  // 가계부 삭제
   static deleteAccoutBook = async function (req, res) {
+    /** 
+     * 기능: 가계부 삭제
+     * 작성자: 이승연
+     */
     const id = req.query.id;
     if (id == undefined) {
       return res.status(404).render("error.ejs", error.NOT_FOUND);
@@ -61,8 +76,11 @@ class AccountBookController {
     }
   };
 
-  // 가계부 목록 조회
   static getAccountBookList = async function (req, res) {
+    /** 
+     * 기능: 가계부 목록 조회
+     * 작성자: 허정연
+     */
     const member_id = req.user.id;
     try {
       const [result] = await AccountBookService.accountBookList(member_id);
@@ -83,8 +101,11 @@ class AccountBookController {
     }
   };
 
-  // 삭제된 가계부 목록 조회
   static getAccountBookDeletedList = async function (req, res) {
+    /** 
+     * 기능: 삭제된 가계부 목록 조회
+     * 작성자: 허정연
+     */
     const member_id = req.user.id;
     try {
       const [result] = await AccountBookService.accountBookDeletedList(member_id);
@@ -97,8 +118,11 @@ class AccountBookController {
     }
   };
 
-  // 상세보기 조회
   static getAccountBookDetail = async function (req, res) {
+    /** 
+     * 기능: 상세보기 조회
+     * 작성자: 허정연
+     */
     const id = req.query.id;
     if (id == undefined) {
       return res.status(404).render("error.ejs", error.NOT_FOUND);
@@ -117,8 +141,11 @@ class AccountBookController {
     }
   };
 
-  // 복원하기 기능
   static putAccountBookRestore = async function (req, res) {
+    /** 
+     * 기능: 복원하기
+     * 작성자: 허정연
+     */
     const id = req.query.id;
     if (id == undefined) {
       return res.status(404).render("error.ejs", error.NOT_FOUND);

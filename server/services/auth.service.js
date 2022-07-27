@@ -1,18 +1,11 @@
 const pool = require("../db/config");
 
-/**
- * @code writer 장덕수
- * @description 사용자 인증 시 사용되는 sql구문 클래스로 정의
- *
- * @auth.join 회원가입 메소드
- * @auth.checkId 아이디 중복 확인 메소드
- * @auth.checkUser 로그인 시 유저 정보 조회 메소드
- *
- * @returns sql구문으로 인한 DB 생성 및 조회
- */
 class AuthService {
-  // 회원가입 메소드
   static async join(member_id, member_pw, member_name, phone_number) {
+    /** 
+     * 기능: 회원가입 메소드
+     * 작성자: 장덕수
+     */
     const sql = `INSERT INTO member (member_id, member_pw, member_name, phone_number) VALUES ('${member_id}', '${member_pw}', '${member_name}', '${phone_number}');`;
     let connection = null;
     try {
@@ -26,8 +19,11 @@ class AuthService {
     }
   }
 
-  // 아이디 중복 확인 메소드
   static async checkId(member_id) {
+    /** 
+     * 기능: 아이디 중복 확인 메소드
+     * 작성자: 장덕수
+     */
     const sql = `SELECT member_id FROM member WHERE member_id = '${member_id}'`;
     let connection = null;
     try {
@@ -41,8 +37,11 @@ class AuthService {
     }
   }
 
-  // 회원가입 시 잔액 입력
   static async insertBalance(member_id, balance) {
+    /** 
+     * 기능: 회원가입 시 잔액 입력
+     * 작성자: 장덕수
+     */
     const sql = `INSERT INTO have_money (member_id, balance) VALUES ('${member_id}', '${balance}');`;
     let connection = null;
     try {
@@ -56,8 +55,11 @@ class AuthService {
     }
   }
 
-  // 로그인 시 유저 정보 조회 메소드
   static async checkUser(member_id) {
+    /** 
+     * 기능: 로그인 시 유저 정보 조회 메소드
+     * 작성자: 장덕수
+     */
     const sql = `SELECT member_id, member_pw FROM member WHERE member_id = '${member_id}'`;
     let connection = null;
     try {
@@ -71,8 +73,11 @@ class AuthService {
     }
   }
 
-  // resfresh토큰 조회
   static async searchRefreshToken(member_id) {
+    /** 
+     * 기능: resfresh토큰 조회
+     * 작성자: 장덕수
+     */
     const sql = `SELECT refresh_token FROM refresh_token WHERE member_id = '${member_id}'`;
     let connection = null;
     try {
@@ -86,8 +91,11 @@ class AuthService {
     }
   }
 
-  // 로그인 시 refresh토큰 DB 저장
   static async saveRefreshToken(member_id, token) {
+    /** 
+     * 기능: 로그인 시 refresh토큰 DB 저장
+     * 작성자: 장덕수
+     */
     const sql = `INSERT INTO refresh_token (member_id, refresh_token) VALUES ('${member_id}', '${token}');`;
     let connection = null;
     try {
@@ -101,8 +109,11 @@ class AuthService {
     }
   }
 
-  // mypage 정보 조회 메소드
   static async mypage(member_id) {
+    /** 
+     * 기능: mypage 정보 조회 메소드
+     * 작성자: 장덕수
+     */
     const sql = `
       SELECT member.member_id, member.member_name, member.phone_number, have_money.balance 
       FROM member 
@@ -121,8 +132,11 @@ class AuthService {
     }
   }
 
-  // 로그아웃 시 리프레시 토큰 데이터 삭제
   static async logout(member_id) {
+    /** 
+     * 기능: 로그아웃 시 리프레시 토큰 데이터 삭제
+     * 작성자: 장덕수
+     */
     const sql = `DELETE FROM refresh_token WHERE member_id = '${member_id}';`;
     let connection = null;
     try {

@@ -13,8 +13,9 @@
             <div class="contents-update">가계부 수정</div>
           </div>
           <div class="line"></div>
-          <div class="date">작성 날짜: <%= accountBook.reg_date %></div>
           <div class="contents-align">
+            <div>시용날짜</div>
+            <input type="date" name="use_date" id="use_date" value="<%= accountBook.use_date %>" />
             <label>분류</label>
             <% if (accountBook.type == '수입') { %>
             <span class="radio-group">

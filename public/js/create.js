@@ -1,9 +1,8 @@
 function clickCreate() {
   createAccoutBook().then((result) => {
-    console.log(result);
     alert(result.message);
+    location.href = "/accountBook/list";
   });
-  location.href = "/accountBook/list";
 }
 
 async function createAccoutBook() {
@@ -15,6 +14,7 @@ async function createAccoutBook() {
       purpose: document.getElementById("purpose").value,
       payment: document.querySelector('input[name="payment"]:checked').value,
       memo: document.getElementById("memo").value,
+      use_date: document.getElementById("use_date").value
     };
 
     const opt = {
