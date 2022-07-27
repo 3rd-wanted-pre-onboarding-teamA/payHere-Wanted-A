@@ -50,7 +50,7 @@ class AccountBookController {
      * 기능: 가계부 수정
      * 작성자: 이승연
      */
-    const { account_book_id, type, amount, purpose, payment, memo } = req.body;
+    const { account_book_id, type, amount, purpose, payment, memo, use_date } = req.body;
     try {
       await AccountBookService.modify(type, amount, purpose, payment, memo, use_date, account_book_id);
       res.status(200).json({ message: "가계부가 수정되었습니다." });
