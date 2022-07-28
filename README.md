@@ -92,7 +92,7 @@ https://user-images.githubusercontent.com/22606199/181408560-5644ae0f-39a3-4a28-
 
 ## 🌴 TDD
 
-Jest로 테스트 코드 구현 example
+#### Jest로 테스트 코드 구현 ex
 
 
 ``` javascript
@@ -124,8 +124,6 @@ describe("create account book", () => {
     expect(response.statusCode).toBe(201);
   });
 });
- 
-
 ```
 
 ## 🍉 REST API
