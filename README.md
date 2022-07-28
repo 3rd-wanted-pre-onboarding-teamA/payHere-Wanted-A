@@ -124,6 +124,7 @@ Tests:       11 passed, 11 total
 Snapshots:   0 total  
 Time:        3.77 s  
 
+<br/>
 
 ## 🍉 REST API
 
