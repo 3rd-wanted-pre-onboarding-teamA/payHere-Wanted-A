@@ -90,12 +90,9 @@ https://user-images.githubusercontent.com/22606199/181408560-5644ae0f-39a3-4a28-
 6. 1~5 기능에 대한 예외처리 구현
 ```
 
-## 🌴 TDD
+## 🌴 TDD (Jest)
 
-#### Jest로 테스트 코드 구현 
-
-가계부 기능  
-  성공 시  
+#### 가계부 기능  
   create account book  
     √ create account book (439 ms)  
   update account book form  
