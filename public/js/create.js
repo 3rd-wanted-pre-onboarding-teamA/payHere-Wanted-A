@@ -6,7 +6,6 @@ function clickCreate() {
 }
 
 async function createAccoutBook() {
-  location.href = "/accountBook/create";
   try {
     const data = {
       type: document.querySelector('input[name="type"]:checked').value,
