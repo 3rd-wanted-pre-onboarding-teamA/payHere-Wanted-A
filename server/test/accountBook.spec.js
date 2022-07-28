@@ -3,13 +3,14 @@ const AccountBookController = require("../controllers/accountBook.controller.js"
 
 // 가계부 생성
 describe("create account book", () => {
-  let type, amount, purpose, payment, memo, request, response;
+  let type, amount, purpose, payment, memo, use_date, request, response;
   beforeEach(() => {
     type = "지출";
     amount = 1000;
     purpose = "고구마";
     payment = "현금";
     memo = "없음";
+    use_date = "2022-07-22";
     request = httpMocks.createRequest({
       user: {
         id: "qwer1234@naver.com"
@@ -20,6 +21,7 @@ describe("create account book", () => {
         purpose: purpose,
         payment: payment,
         memo: memo,
+        use_date: use_date
       },
     });
     response = httpMocks.createResponse();
@@ -49,7 +51,7 @@ describe("update account book form", () => {
 
 // 가계부 수정 동작
 describe("update account book", () => {
-  let type, amount, purpose, payment, memo, request, response;
+  let type, amount, purpose, payment, memo, use_date, request, response;
   beforeEach(() => {
     account_book_id = 3;
     type = "지출";
@@ -57,6 +59,7 @@ describe("update account book", () => {
     purpose = "감자";
     payment = "현금";
     memo = "없음";
+    use_date = "2022-07-22";
     request = httpMocks.createRequest({
       body: {
         type: type,
@@ -64,6 +67,7 @@ describe("update account book", () => {
         purpose: purpose,
         payment: payment,
         memo: memo,
+        use_date: use_date,
         account_book_id: account_book_id
       },
     });
