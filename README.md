@@ -3,6 +3,7 @@
   # PayHere 기업 과제 가계부 만들기
 <p>
   <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=Swift&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Express-000000?style=flat&logo=Express&logoColor=white"/>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white"/>
   <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat&logo=Amazon RDS&logoColor=white"/>
   <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat&logo=Amazon EC2S&logoColor=white"/>
@@ -18,12 +19,19 @@
 <br/>
 
 
+## 🎮 노션링크
+더 상세한 개발 내용을 확인할 수 있어요!  
+<span style="background-color: #dcffe4">[more descriptions(click here!)](https://misty-lungfish-f16.notion.site/pay_here-nodejs-CRUD-a3b0bf3fc4a14fcdac9fbf760107373e)</span>
+
+<br/>
+
 ## 📒 Project
 
   <h4> ⏳  개발 기간  </h4> 
   2022/07/04  ~ 2022/07/08 
 
   ## 🎬 프로젝트 시연
+  > http://43.200.90.195/ 
   ```
     ejs(SSR 방식)로 프론트 페이지를 제작했습니다
     아래는 가계부 추가 페이지 시연 영상입니다🤍
@@ -36,7 +44,7 @@
 
   <br/>
 
-  <span style="background-color: #dcffe4">[more descriptions(click here!)](https://misty-lungfish-f16.notion.site/pay_here-nodejs-CRUD-a3b0bf3fc4a14fcdac9fbf760107373e)</span>
+  
   ## ✍🏻 프로젝트 설명
   ```
   - 고객은 본인의 소비내역을 기록/관리하고 싶습니다.
