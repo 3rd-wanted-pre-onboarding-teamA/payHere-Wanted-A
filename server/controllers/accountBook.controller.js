@@ -129,7 +129,7 @@ class AccountBookController {
     }
     try {
       const [result] = await AccountBookService.accountBookDetail(id);
-      if (result[0].memo == null) {
+      if (result[0].memo == '') {
         result[0].memo = "없음";
       }
       res.status(200).render("detail.ejs", {
