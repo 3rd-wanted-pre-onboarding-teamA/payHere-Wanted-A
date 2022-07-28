@@ -1,4 +1,7 @@
-// 상세보기로 이동
+function toCreate() {
+  location.href = "/accountBook/create";
+}
+
 function detail(id) {
   location.href = "/accountBook/detail?id=" + id;
 }
