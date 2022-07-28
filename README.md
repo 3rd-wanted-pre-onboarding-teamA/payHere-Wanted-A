@@ -92,39 +92,33 @@ https://user-images.githubusercontent.com/22606199/181408560-5644ae0f-39a3-4a28-
 
 ## 🌴 TDD
 
-#### Jest로 테스트 코드 구현 ex
+#### Jest로 테스트 코드 구현 
 
+가계부 기능  
+  성공 시  
+  create account book  
+    √ create account book (439 ms)  
+  update account book form  
+    √ update account book form (14 ms)  
+  update account book  
+    √ update account book (11 ms)  
+  delete account book  
+    √ delete account book (37 ms)  
+  delete account book not querystring  
+    √ delete account book not querystring  
+  select account book list  
+    √ select account book list (5 ms)  
+  select account book deleted list  
+    √ select account book deleted list (4 ms)  
+  select account book detail  
+    √ select account book detail (4 ms)  
+  select account book detail not querystring  
+    √ select account book detail not querystring (1 ms)  
+  restore account book  
+    √ restore account book (13 ms)  
+  restore account book not querystring  
+    √ restore account book not querystring (2 ms)  
 
-``` javascript
-describe("create account book", () => {
-  let type, amount, purpose, payment, memo, request, response;
-  beforeEach(() => {
-    type = "지출";
-    amount = 1000;
-    purpose = "고구마";
-    payment = "현금";
-    memo = "없음";
-    request = httpMocks.createRequest({
-      user: {
-        id: "qwer1234@naver.com"
-      },
-      body: {
-        type: type,
-        amount: amount,
-        purpose: purpose,
-        payment: payment,
-        memo: memo,
-      },
-    });
-    response = httpMocks.createResponse();
-  });
- 
-  it("create account book", async () => {
-    await AccountBookController.createAccoutBook(request, response);
-    expect(response.statusCode).toBe(201);
-  });
-});
-```
 
 ## 🍉 REST API
 
