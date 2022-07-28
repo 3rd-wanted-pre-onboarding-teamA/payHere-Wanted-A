@@ -30,7 +30,9 @@
     추가적인 시연 영상은 하단의 notion page에 방문해주세요
   ```
   
-  https://user-images.githubusercontent.com/22606199/178387149-0eb1d2d4-9b56-4408-9543-a4511eadab67.MOV
+ 
+  https://user-images.githubusercontent.com/22606199/181408560-5644ae0f-39a3-4a28-9ec4-383045743ad5.mp4
+
 
   <br/>
 
