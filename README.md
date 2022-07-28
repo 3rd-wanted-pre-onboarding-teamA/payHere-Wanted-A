@@ -54,14 +54,15 @@ https://user-images.githubusercontent.com/22606199/181408560-5644ae0f-39a3-4a28-
   v. 로그인되지 않은 고객은 접근 제한 처리
 ```
 ### ⭐ 필수 구현사항  
+  - 토큰 발행하여 인증 제어 방식 구현
   - REST API 구현
   - 코딩 컨벤션
   - 비즈니스 로직 구조
   - 데이터베이스 모델링
 ### 🌙 추가 구현사항
+  - ejs를 활용한 뷰(VIEW) 구현
   - Test case 작성  
-  - Docker 활용
-  - aws 배포
+  - AWS EC2, RDS로 배포
 
 <br/>
 
