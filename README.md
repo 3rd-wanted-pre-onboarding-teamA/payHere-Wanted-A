@@ -76,6 +76,32 @@ https://user-images.githubusercontent.com/22606199/181500412-e29bbe51-eee5-4706-
 
 <br/>
 
+## 🍉 REST API
+
+<span style="background-color: #dcffe4">[more descriptions(click here!)](https://misty-lungfish-f16.notion.site/pay_here-nodejs-CRUD-a3b0bf3fc4a14fcdac9fbf760107373e)</span>
+
+  |  | METHOD | URL | 
+| --- | --- | --- | 
+| 회원가입 | GET | /auth/signup |
+| 회원가입 동작 | POST | /auth/newUserAction |
+| id 중복 검사 동작 | POST | /auth/checkIdAction |
+| 토큰 중복검사 동작 | POST | /auth/validateAction |
+| 로그인 | GET | /auth/login |
+| 로그인 동작  | POST | /auth/loginAction |
+| 로그아웃 | POST | /auth/logout |
+| 회원정보 | GET | /mypage |
+| 가계부 등록 | GET | /accountBook/create |
+| 가계부 등록 동작  | POST | /accountBook/createAction |
+| 가계부 수정 | GET | /accountBook/update |
+| 가계부 수정 동작 | PUT | /accountBook/updateAction?id=1 |
+| 가계부 삭제 | PUT | /accountBook/delete?id=1 |
+| 삭제 가계부 리스트 | GET | /accountBook/deletedList |
+| 삭제 가계부 복원 | PUT | /accountBook/restore?id=1 |
+| 가계부 리스트 | GET | /accountBook/list |
+| 가계부 상세 내역 | GET | /accountBook/detail?id=1 |
+
+<br/>
+
 ## 🧚🏻 구현 기능
 - [X] mvc 패턴을 활용한 레이어 계층 분리
 - [X] 회원 가입, 로그인
@@ -126,28 +152,3 @@ Snapshots:   0 total
 Time:        3.77 s  
 
 <br/>
-
-## 🍉 REST API
-
-<span style="background-color: #dcffe4">[more descriptions(click here!)](https://misty-lungfish-f16.notion.site/pay_here-nodejs-CRUD-a3b0bf3fc4a14fcdac9fbf760107373e)</span>
-
-  |  | METHOD | URL | 
-| --- | --- | --- | 
-| 회원가입 | GET | /auth/signup |
-| 회원가입 동작 | POST | /auth/newUserAction |
-| id 중복 검사 동작 | POST | /auth/checkIdAction |
-| 토큰 중복검사 동작 | POST | /auth/validateAction |
-| 로그인 | GET | /auth/login |
-| 로그인 동작  | POST | /auth/loginAction |
-| 로그아웃 | POST | /auth/logout |
-| 회원정보 | GET | /mypage |
-| 가계부 등록 | GET | /accountBook/create |
-| 가계부 등록 동작  | POST | /accountBook/createAction |
-| 가계부 수정 | GET | /accountBook/update |
-| 가계부 수정 동작 | PUT | /accountBook/updateAction?id=1 |
-| 가계부 삭제 | PUT | /accountBook/delete?id=1 |
-| 삭제 가계부 리스트 | GET | /accountBook/deletedList |
-| 삭제 가계부 복원 | PUT | /accountBook/restore?id=1 |
-| 가계부 리스트 | GET | /accountBook/list |
-| 가계부 상세 내역 | GET | /accountBook/detail?id=1 |
-
