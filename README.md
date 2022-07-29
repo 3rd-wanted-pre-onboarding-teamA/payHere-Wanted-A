@@ -39,7 +39,6 @@
 ```
 
 https://user-images.githubusercontent.com/22606199/181500412-e29bbe51-eee5-4706-8dfc-dc87acf832a8.mp4
-
 <br/>
 
 ## ✍🏻 프로젝트 요구사항
@@ -77,6 +76,8 @@ https://user-images.githubusercontent.com/22606199/181500412-e29bbe51-eee5-4706-
 <br/>
 
 ## 🍉 REST API
+
+<img src="https://user-images.githubusercontent.com/22606199/181689526-9c387ea1-63b1-4d4f-afb1-14434404ac9b.png" width="1000"/>
 
 <span style="background-color: #dcffe4">[more descriptions(click here!)](https://misty-lungfish-f16.notion.site/pay_here-nodejs-CRUD-a3b0bf3fc4a14fcdac9fbf760107373e)</span>
 
