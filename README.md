@@ -58,6 +58,7 @@ https://user-images.githubusercontent.com/22606199/181500412-e29bbe51-eee5-4706-
 - 비즈니스 로직 구조
 - 데이터베이스 모델링
 ### 🌙 추가 구현사항
+- mvc 패턴을 활용한 레이어 계층 분리
 - ejs를 활용한 뷰(VIEW) 구현
 - Test case 작성  
 - AWS EC2, RDS로 배포
@@ -76,7 +77,7 @@ https://user-images.githubusercontent.com/22606199/181500412-e29bbe51-eee5-4706-
 <br/>
 
 ## 🧚🏻 구현 기능
-
+- [X] mvc 패턴을 활용한 레이어 계층 분리
 - [X] 회원 가입, 로그인
 - [X] jwt 토큰 발급 (로그인되지 않은 유저는 접근 제한 처리)
 - [X] 회원정보 조회
@@ -85,8 +86,9 @@ https://user-images.githubusercontent.com/22606199/181500412-e29bbe51-eee5-4706-
 - [X] 사용자가 작성한 가계부 목록 확인(사용된 날짜로 내림차순 정렬)
 - [X] 가계부 상세 내용 확인
 - [X] 가계부 입력, 수정, 삭제, 복원에 따른 잔액 변경 
-- [X] 1~5 기능에 대한 예외처리 구현
-- [X] 테스트 코드 구현
+- [X] 모든 기능에 대한 예외처리 구현
+- [X] view 페이지 개발(ejs)
+- [X] 테스트 코드 구현(jest)
 - [X] AWS EC2, RDS 배포
 
 <br/>
