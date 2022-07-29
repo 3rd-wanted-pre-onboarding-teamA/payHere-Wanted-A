@@ -122,34 +122,10 @@ https://user-images.githubusercontent.com/22606199/181500412-e29bbe51-eee5-4706-
 
 ## 🌴 TDD (Jest)
 
-#### 가계부 기능  
- `PASS`  server/test/accountBook.spec.js  
-  create account book  
-    ✔︎ create account book (318 ms)  
-  update account book form  
-    ✔︎ update account book form (17 ms)  
-  update account book  
-    ✔︎ update account book (16 ms)  
-  delete account book  
-    ✔︎ delete account book (6 ms)  
-  delete account book not querystring  
-    ✔︎ delete account book not querystring (3 ms)  
-  select account book list  
-    ✔︎ select account book list (9 ms)  
-  select account book deleted list  
-    ✔︎ select account book deleted list (2 ms)  
-  select account book detail  
-    ✔︎ select account book detail (5 ms)  
-  select account book detail not querystring  
-    ✔︎ select account book detail not querystring (1 ms)  
-  restore account book  
-    ✔︎ restore account book (8 ms)  
-  restore account book not querystring  
-    ✔︎ restore account book not querystring (1 ms)  
+#### 유저 관련 테스트 케이스
+![image](https://user-images.githubusercontent.com/80298502/181716775-2c975cde-5d21-43a2-95fe-1fdaf3373fb7.png)
 
-Test Suites: 1 passed, 1 total  
-Tests:       11 passed, 11 total  
-Snapshots:   0 total  
-Time:        3.77 s  
+#### 가계부 관련 테스트 케이스
+![image](https://user-images.githubusercontent.com/80298502/181716892-d728a1fe-a3f2-4347-9563-80a33e50cd2d.png)
 
 <br/>
