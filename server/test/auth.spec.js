@@ -1,27 +1,26 @@
 const httpMocks = require("node-mocks-http");
-const faker = require("faker");
 const AuthController = require("../controllers/auth.controller");
+const { makeValidUserDetails } = require("./auth.utils");
+const dotenv = require("dotenv");
+dotenv.config();
 
 describe("회원가입", () => {
-    let id, pw, name, phoneNumber, balance, request, response, AuthRepository;
+    let request, response, AuthRepository;
 
     beforeEach(() => {
         AuthRepository = {};
-        const fakeUser = faker.helpers.userCard();
-        id = fakeUser.email;
-        pw = faker.internet.password(10, true);
-        name = fakeUser.name;
-        phoneNumber = "010-1111-1111";
-        balance = 500000;
+        const user = makeValidUserDetails();
+        const { member_id, member_pw, member_name, phone_number, balance } = user;
+
         request = httpMocks.createRequest({
             method: "POST",
             url: "/auth/joinAction",
             body: {
-                member_id: id,
-                member_pw: pw,
-                member_name: name,
-                phone_number: phoneNumber,
-                balance
+                member_id,
+                member_pw,
+                member_name,
+                phone_number,
+                balance,
             },  
         });
         response = httpMocks.createResponse();
@@ -39,92 +38,92 @@ describe("회원가입", () => {
 
 });
 
-describe("로그인", () => {
-    let id, pw, request, response;
+describe("로그인 & 로그아웃 & 마이페이지", () => {
+    let request, loginRequest, logoutRequest, mypageRequest, response;
+    const user = makeValidUserDetails();
+    const { member_id, member_pw, member_name, phone_number, balance } = user;
 
-    beforeEach(() => {
-        id = "abc123@test.com";
-        pw = "qwer1234!";
-        request = httpMocks.createRequest({
-            method: "POST",
-            url: "/auth/loginAction",
-            body: {
-                member_id: id,
-                member_pw: pw,
-            },
+    describe("로그인 & 로그아웃", () => {
+        beforeEach(async () => {
+            AuthRepository = {};
+            request = httpMocks.createRequest({
+                method: "POST",
+                url: "/auth/joinAction",
+                body: {
+                    member_id,
+                    member_pw,
+                    member_name,
+                    phone_number,
+                    balance,
+                }
+            });
+            response = httpMocks.createResponse();
+            await AuthController.joinAction(request, response);
         });
-        response = httpMocks.createResponse();
-    });
+        
+        describe("로그인", () => {
+            it("로그인 완료", async () => {
+                loginRequest = await httpMocks.createRequest({
+                    method: "POST",
+                    url: "/auth/loginAction",
+                    body: {
+                        member_id,
+                        member_pw,
+                    }
+                });
+        
+                await AuthController.loginAction(loginRequest, response);
+        
+                expect(response.statusCode).toBe(200);
+            });
+        })
 
-    it("로그인 완료", async () => {
-        await AuthController.loginAction(request, response);
-
-        expect(response.statusCode).toBe(200);
-    });
-});
-
-describe("마이페이지", () => {
-    let userId, name, phoneNumber, balance, request, response, AuthRepository;
-
-    beforeEach(() => {
-        AuthRepository = {};
-        userId = "abc123@test.com";
-        name = "Tom";
-        phoneNumber = "010-1234-1111";
-        balance = 50000;
-        request = httpMocks.createRequest({
-            user: {
-                id: userId,
-            }
-        });
-        response = httpMocks.createResponse();
-    });
-
-    it("마이페이지 조회 완료", async () => {
-        const result = AuthRepository.mypage = jest.fn(() => {
-            return {
-                member_id: userId,
-                member_name: name,
-                phone_number: phoneNumber,
-                balance
-            };
-        });
-
-        await AuthController.mypage(request, response);
-
-        expect(response.statusCode).toBe(200);
-        expect(response._getRenderData()).toMatchObject({
-            myInfo: {
-                member_id: userId,
-                member_name: name,
-                phone_number: phoneNumber,
-                balance,
-            }
-        });
-    });
-});
-
-describe("로그아웃", () => {
-    let userId, request, response;
-
-    beforeEach(() => {
-        userId = "abc123@test.com";
-        request = httpMocks.createRequest({
-            user: {
-                id: userId,
-            },
-        });
-        response = httpMocks.createResponse();
-    });
-
-    it("로그아웃 완료", async () => {
-        await AuthController.logout(request, response);
-
-        expect(response.statusCode).toBe(200);
-        expect(response._getJSONData()).toMatchObject({
-            message: "로그아웃 되었습니다.",
+        describe("로그아웃", () => {
+            it("로그아웃 완료", async () => {
+                logoutRequest = await httpMocks.createRequest({
+                    method: "GET",
+                    url: "/auth/logout",
+                    user: {
+                        id: member_id,
+                    },
+                });
+        
+                await AuthController.logout(logoutRequest, response);
+                console.log(response)
+            });
         })
     })
 
-    
-})
+    describe("마이페이지", () => {
+        beforeEach(async () => {
+            AuthRepository = {};
+            request = httpMocks.createRequest({
+                method: "POST",
+                url: "/auth/joinAction",
+                body: {
+                    member_id,
+                    member_pw,
+                    member_name,
+                    phone_number,
+                    balance,
+                }
+            });
+            response = httpMocks.createResponse();
+            await AuthController.joinAction(request, response);
+        });
+        it("마이페이지 완료", async () => {
+            mypageRequest = await httpMocks.createRequest({
+                method: "GET",
+                url: "/auth/mypage",
+                user: {
+                    id: member_id,
+                },
+            });
+
+            await AuthController.mypage(mypageRequest, response);
+            console.log(response)
+
+            expect(response.statusCode).toBe(200);
+        });
+    });
+});
