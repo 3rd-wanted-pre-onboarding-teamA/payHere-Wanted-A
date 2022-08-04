@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const AuthService = require("../services/auth.service");
 const { generateAccessToken, generateRefreshToken } = require("../util/generateToken");
+const error = require("../db/error");
+
 dotenv.config();
 
 class AuthController {
