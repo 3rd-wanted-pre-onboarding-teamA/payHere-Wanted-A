@@ -134,7 +134,7 @@ class AuthController {
       }
 
       res.setHeader("Authorization", "Bearer" + accessToken);
-      res.cookie("access-token", accessToken);
+      res.cookie("access-token", accessToken, { httpOnly: true });    // httpOnly 옵션 true로 설정
       res.status(200).json({
         message: "로그인이 되었습니다.",
       });
