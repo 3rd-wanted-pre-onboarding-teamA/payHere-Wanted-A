@@ -5,6 +5,7 @@ const logger = require("morgan");
 const index = require("./server/routes/index");
 const error = require("./server/db/error");
 const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
 
 class App {
   /** 
@@ -26,6 +27,8 @@ class App {
     this.app.use(logger("dev"));
     this.app.use(cors());
     this.app.use(cookieParser());
+    this.app.use(helmet());  // x-Powered-By 헤더 제거
+    this.app.use(helmet.xssFilter());   // xss 취약점 보완
   }
 
   setViewEngine() {
