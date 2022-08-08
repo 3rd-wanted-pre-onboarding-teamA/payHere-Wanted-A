@@ -4,6 +4,7 @@ const path = require("path");
 const logger = require("morgan");
 const index = require("./server/routes/index");
 const error = require("./server/db/error");
+const cookieParser = require("cookie-parser");
 
 class App {
   /** 
@@ -24,6 +25,7 @@ class App {
     this.app.use(express.json());
     this.app.use(logger("dev"));
     this.app.use(cors());
+    this.app.use(cookieParser());
   }
 
   setViewEngine() {

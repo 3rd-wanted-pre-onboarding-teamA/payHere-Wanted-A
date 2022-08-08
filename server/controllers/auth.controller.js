@@ -189,7 +189,7 @@ class AuthController {
       if (error) return res.sendStatus(403);
       const accessToken = generateAccessToken(user.id);
       res.setHeader("Authorization", "Bearer" + accessToken);
-      res.cookie("access-token", accessToken);
+      res.cookie("access-token", accessToken, { httpOnly: true });
       res.status(200).json({
         message: "엑세스 토큰이 재발급되었습니다.",
       });
