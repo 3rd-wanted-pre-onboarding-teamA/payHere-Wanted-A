@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll --verbose",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "A",
   "license": "MIT",
@@ -27,7 +27,6 @@
   "devDependencies": {
     "jest": "^28.1.2",
     "node-mocks-http": "^1.11.0",
-    "nodemon": "^2.0.19",
     "test": "^3.0.1"
   }
 }
